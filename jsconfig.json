@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components": ["components/index"],
+      "@/configs": ["configs/index"],
+      "@/layouts": ["layouts/index"],
+      "@/helpers": ["helpers/index"]
+    }
+  }
+}
