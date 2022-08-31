@@ -1,9 +1,13 @@
-import { Button } from "@chakra-ui/react";
+import { Button, WrapItem } from "@chakra-ui/react";
 
-const Buttons = ({ text }) => {
+const Buttons = ({ text, variant, className, color, textColor }) => {
   return (
     <>
-      <Button>{text}</Button>
+      <div>
+        <Button variant="outline" colorScheme="yellow">
+          <h1 className={`text-${textColor}`}>{text}</h1>
+        </Button>
+      </div>
     </>
   );
 };

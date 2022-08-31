@@ -1,5 +1,6 @@
 import { Tabs, TabList, Tab } from "@chakra-ui/react";
 import { Buttons } from "@/components";
+import Image from "next/image";
 
 const Navbar = () => {
   const navbarList = ["Home", "Vehicle Type", "History", "About"];
@@ -7,7 +8,9 @@ const Navbar = () => {
   return (
     <section className="py-10 px-20">
       <navbar className="flex justify-between">
-        <h1>Logo</h1>
+        <div>
+          <Image src="/logo.svg" width={41} height={41} />
+        </div>
 
         <div className="flex">
           <div>
@@ -28,9 +31,8 @@ const Navbar = () => {
             </Tabs>
           </div>
 
-          <div>
-            <Buttons className="mr-2" text={"Login"}></Buttons>
-            <Buttons text={"Register"}></Buttons>
+          <div className="flex">
+            <Buttons text={"Login"} />
           </div>
         </div>
       </navbar>
