@@ -1,14 +1,19 @@
-import { Button, WrapItem } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-const Buttons = ({ text, variant, className, color, textColor }) => {
+const Buttons = ({ text, variant, className, color, textColor, onClick }) => {
   return (
-    <>
-      <div>
-        <Button variant="outline" colorScheme="yellow">
-          <h1 className={`text-${textColor}`}>{text}</h1>
-        </Button>
-      </div>
-    </>
+    <Box
+      className={`py-2 rounded-lg ${
+        variant === "outline"
+          ? `border border-${color || "crayola-orange"}`
+          : ""
+      } ${className}`}
+      as="button"
+      bg={variant === "outline" ? "" : color || "#FFCD61"}
+      onClick={onClick}
+    >
+      <p className={`text-base text-${textColor}`}>{text}</p>
+    </Box>
   );
 };
 

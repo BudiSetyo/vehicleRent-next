@@ -6,12 +6,24 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    container: {
+      screens: {
+        sm: "600px",
+        md: "728px",
+        lg: "984px",
+        xl: "1240px",
+        "2xl": "1600px",
+      },
+    },
     colors: {
+      white: "#FFF",
+      black: "#000",
       "dark-gunmetal": "#202336",
       "onyx-black": "#393939",
       "independence-black": "#4F5665",
       "old-silver": "#848484",
       "quick-silver": "#9F9F9F",
+      "sand-silver": "#C4C4C4",
       "storm-grey": "#767680",
       "ghost-white": "#F9F9FB",
       "pastel-blue": "#B8BECD",
