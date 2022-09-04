@@ -1,45 +1,38 @@
-import { MainLayout, AuthLayout } from "@/components";
+import { MainLayout } from "@/components";
+import { Buttons, Inputs, Selects } from "@/components";
 
 export default function App() {
+  const sirup = ["Marjan", "ABC"];
+
   return (
     <MainLayout>
       <section className="py-10 px-20">
-        <h1>Content</h1>
-        <p>
-          Where does it come from? Contrary to popular belief, Lorem Ipsum is
-          not simply random text. It has roots in a piece of classical Latin
-          literature from 45 BC, making it over 2000 years old. Richard
-          McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-          looked up one of the more obscure Latin words, consectetur, from a
-          Lorem Ipsum passage, and going through the cites of the word in
-          classical literature, discovered the undoubtable source. Lorem Ipsum
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-          Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-          This book is a treatise on the theory of ethics, very popular during
-          the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-          amet..", comes from a line in section 1.10.32. The standard chunk of
-          Lorem Ipsum used since the 1500s is reproduced below for those
-          interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
-          Malorum" by Cicero are also reproduced in their exact original form,
-          accompanied by English versions from the 1914 translation by H.
-          Rackham. Where does it come from? Contrary to popular belief, Lorem
-          Ipsum is not simply random text. It has roots in a piece of classical
-          Latin literature from 45 BC, making it over 2000 years old. Richard
-          McClintock, a Latin professor at Hampden-Sydney College in Virginia,
-          looked up one of the more obscure Latin words, consectetur, from a
-          Lorem Ipsum passage, and going through the cites of the word in
-          classical literature, discovered the undoubtable source. Lorem Ipsum
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-          Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-          This book is a treatise on the theory of ethics, very popular during
-          the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-          amet..", comes from a line in section 1.10.32. The standard chunk of
-          Lorem Ipsum used since the 1500s is reproduced below for those
-          interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
-          Malorum" by Cicero are also reproduced in their exact original form,
-          accompanied by English versions from the 1914 translation by H.
-          Rackham.
-        </p>
+        <section className="bg-third bg-cover bg-center">
+          <div className="md:py-10 md:px-16 py-5 px-8 bg-wrap-opacity">
+            <h1 className="text-2xl md:text-6xl max-w-md mb-8 md:mb-20 font-bold text-dark-gunmetal">
+              Explore and Travel
+            </h1>
+
+            <div className="max-w-md">
+              <h3 className="text-white mb-8">Vehicle Finder</h3>
+              <Inputs
+                className="mb-8"
+                placeHolder="Type the vehicle (ex. motorbike"
+              />
+              <div className="flex mb-8">
+                <Selects placeHolder="Location" data={sirup} />
+                <div className="w-8" />
+                <Selects placeHolder="Date" data={sirup} />
+              </div>
+              <Buttons
+                className="px-10 py-2"
+                text="Search"
+                textColor="onyx-black"
+                textEdit="font-bold"
+              />
+            </div>
+          </div>
+        </section>
       </section>
     </MainLayout>
   );

@@ -1,6 +1,14 @@
 import { Box } from "@chakra-ui/react";
 
-const Buttons = ({ text, variant, className, color, textColor, onClick }) => {
+const Buttons = ({
+  text,
+  variant,
+  className,
+  color,
+  textColor,
+  onClick,
+  textEdit,
+}) => {
   return (
     <Box
       className={`py-2 rounded-lg ${
@@ -12,7 +20,7 @@ const Buttons = ({ text, variant, className, color, textColor, onClick }) => {
       bg={variant === "outline" ? "" : color || "#FFCD61"}
       onClick={onClick}
     >
-      <p className={`text-base text-${textColor}`}>{text}</p>
+      <p className={`text-base text-${textColor} ${textEdit}`}>{text}</p>
     </Box>
   );
 };

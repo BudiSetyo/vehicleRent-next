@@ -5,7 +5,8 @@
       "@/components": ["components/index"],
       "@/configs": ["configs/index"],
       "@/layouts": ["layouts/index"],
-      "@/helpers": ["helpers/index"]
+      "@/helpers": ["helpers/index"],
+      "@/utils": ["utils/index"]
     }
   }
 }

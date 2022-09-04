@@ -5,7 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        first: "url('/background/first.png')",
+        second: "url('/background/second.png')",
+        third: "url('/background/third.png')",
+        fourth: "url('/background/fourth.png')",
+      },
+    },
     container: {
       screens: {
         sm: "600px",
@@ -30,6 +37,7 @@ module.exports = {
       "ao-green": "#087E0D",
       "sangria-red": "#9B0A0A",
       "crayola-orange": "#FFCD61",
+      "wrap-opacity": "rgba(0, 0, 0, 0.3)",
     },
   },
   plugins: [],
