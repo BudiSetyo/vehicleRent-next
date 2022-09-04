@@ -9,7 +9,7 @@ const Inputs = ({ className, placeHolder }) => {
         _placeholder={{ color: "#4A4C53", fontWeight: "bold" }}
         border="none"
         textColor="#4A4C53"
-        fontWeight="bold"
+        fontWeight="s"
         className={className}
       />
     </>

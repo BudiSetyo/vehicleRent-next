@@ -14,11 +14,9 @@ const Selects = ({ placeHolder, data, className }) => {
       >
         {data.map((item, index) => {
           return (
-            <>
-              <option key={index} value={item}>
-                {item}
-              </option>
-            </>
+            <option key={index} value={item}>
+              {item}
+            </option>
           );
         })}
       </Select>

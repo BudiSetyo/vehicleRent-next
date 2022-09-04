@@ -26,7 +26,7 @@ const Footer = () => {
   ];
 
   return (
-    <section className="bg-ghost-white py-10 px-20">
+    <section className="bg-ghost-white md:py-10 md:px-20 py-5 px-10">
       <footer>
         <div className="flex justify-between border-b-2 border-sand-silver pb-20">
           <div className="lg:max-w-sm w-full">
