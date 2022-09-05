@@ -6,6 +6,7 @@ import ButtonArrow from "./atoms/buttonArrow";
 
 // Molecules
 import Cards from "./molecules/cards";
+import CardReview from "./molecules/cardReview";
 
 // Organisms
 import Navbar from "./organisms/navbar";
@@ -23,6 +24,7 @@ export {
   Selects,
   ButtonArrow,
   Cards,
+  CardReview,
   Navbar,
   Footer,
   Cover,
