@@ -63,7 +63,12 @@ const SignIn = () => {
               />
             </div>
 
-            <Button variant="unstyled">
+            <Button
+              variant="unstyled"
+              onClick={() => {
+                return handleNavigate("/forgotPassword");
+              }}
+            >
               <p className="text-white underline">Forgot password?</p>
             </Button>
 
