@@ -11,7 +11,7 @@ const Buttons = ({
 }) => {
   return (
     <Box
-      className={`py-2 rounded-lg ${
+      className={`rounded-lg ${
         variant === "outline"
           ? `border border-${color || "crayola-orange"}`
           : ""
@@ -20,7 +20,7 @@ const Buttons = ({
       bg={variant === "outline" ? "" : color || "#FFCD61"}
       onClick={onClick}
     >
-      <p className={`text-base text-${textColor} ${textEdit}`}>{text}</p>
+      <p className={`text-${textColor} ${textEdit}`}>{text}</p>
     </Box>
   );
 };

@@ -3,19 +3,26 @@ import { FaBars, FaRegEnvelope } from "react-icons/fa";
 import { Buttons } from "@/components";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
   const [nav, setNav] = useState(false);
 
   const navbarList = ["Home", "Vehicle Type", "History", "About"];
   const user = {
     name: "Kojok Lam",
     notif: 2,
-    login: true,
+    login: false,
   };
 
   const closeNavbar = () => {
     setNav(false);
+  };
+
+  const handleNavigate = (href) => {
+    return router.push(href);
   };
 
   return (
@@ -94,15 +101,21 @@ const Navbar = () => {
               <>
                 <div className="flex">
                   <Buttons
-                    className="w-20 mr-4"
+                    className="w-20 mr-4 py-2"
                     text="Login"
                     variant="outline"
                     textColor="onyx-black"
+                    onClick={() => {
+                      handleNavigate("/signIn");
+                    }}
                   />
                   <Buttons
-                    className="w-20"
+                    className="w-20 py-2"
                     text="Register"
                     textColor="onyx-black"
+                    onClick={() => {
+                      handleNavigate("/signUp");
+                    }}
                   />
                 </div>
               </>
@@ -135,13 +148,13 @@ const Navbar = () => {
           {user.login ? (
             <>
               <Buttons
-                className="w-full mb-2"
+                className="w-full mb-2 py-2"
                 text="Messages"
                 variant="outline"
                 textColor="onyx-black"
               />
               <Buttons
-                className="w-full"
+                className="w-full py-2"
                 text="Profile"
                 textColor="onyx-black"
               />
@@ -149,15 +162,21 @@ const Navbar = () => {
           ) : (
             <>
               <Buttons
-                className="w-full mb-2"
+                className="w-full mb-2 py-2"
                 text="Login"
                 variant="outline"
                 textColor="onyx-black"
+                onClick={() => {
+                  handleNavigate("signIn");
+                }}
               />
               <Buttons
-                className="w-full"
+                className="w-full py-2"
                 text="Register"
                 textColor="onyx-black"
+                onClick={() => {
+                  handleNavigate("signUp");
+                }}
               />
             </>
           )}

@@ -17,6 +17,7 @@ import Cover from "./organisms/cover";
 // Templates
 import MainLayout from "./templates/layouts/main";
 import AuthLayout from "./templates/layouts/auth";
+import HomeLayout from "./templates/layouts/home";
 
 export {
   Buttons,
@@ -31,4 +32,5 @@ export {
   Carousel,
   MainLayout,
   AuthLayout,
+  HomeLayout,
 };

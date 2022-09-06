@@ -1,10 +1,12 @@
-import { MainLayout } from "@/components";
+import { HomeLayout } from "@/components";
 import { ButtonArrow, Cards, CardReview } from "@/components";
 import { Wrap } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <MainLayout>
+    <HomeLayout>
       <section className="md:py-8 md:px-20 py-4 px-10">
         <section className="mt-10">
           <div className="flex justify-between items-center">
@@ -42,6 +44,6 @@ export default function Home() {
           </div>
         </section>
       </section>
-    </MainLayout>
+    </HomeLayout>
   );
 }
