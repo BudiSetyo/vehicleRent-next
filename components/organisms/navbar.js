@@ -61,6 +61,13 @@ const Navbar = () => {
                       _selected={{ color: "#393939" }}
                       className="text-pastel-blue text-base"
                       key={index}
+                      onClick={() => {
+                        handleNavigate(
+                          item === "Vehicle Type"
+                            ? "/vehicleType"
+                            : item.toLowerCase()
+                        );
+                      }}
                     >
                       {item}
                     </Tab>
@@ -137,6 +144,11 @@ const Navbar = () => {
                 text={item}
                 key={index}
                 onClick={() => {
+                  handleNavigate(
+                    item === "Vehicle Type"
+                      ? "/vehicleType"
+                      : item.toLowerCase()
+                  );
                   closeNavbar();
                 }}
               />

@@ -1,10 +1,7 @@
-import { HomeLayout } from "@/components";
-import { ButtonArrow, Cards, CardReview } from "@/components";
+import { HomeLayout, ButtonArrow, Cards, CardReview } from "@/components";
 import { Wrap } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <HomeLayout>
       <section className="md:py-8 md:px-20 py-4 px-10">
@@ -14,7 +11,7 @@ export default function Home() {
             <ButtonArrow text="View all" />
           </div>
 
-          <Wrap className="mt-10" justify="space-between">
+          <Wrap className="mt-10" justify="space-between" spacing="30px">
             <Cards />
             <Cards />
             <Cards />

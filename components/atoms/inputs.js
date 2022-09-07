@@ -16,7 +16,7 @@ const Inputs = ({
         placeholder={placeHolder}
         _placeholder={{
           color: placeHolderColor || "#4A4C53",
-          fontWeight: "bold",
+          fontWeight: "mediuum",
         }}
         border="none"
         textColor={textColor || "#4A4C53"}
