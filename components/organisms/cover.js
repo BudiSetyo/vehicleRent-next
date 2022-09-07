@@ -18,6 +18,7 @@ const Cover = () => {
           <Inputs
             className="mb-8"
             placeHolder="Type the vehicle (ex. motorbike"
+            placeHolderColor="#4A4C53"
           />
           <div className="flex mb-8">
             <Selects placeHolder="Location" data={sirup} />

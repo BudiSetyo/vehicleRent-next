@@ -6,9 +6,8 @@ const Selects = ({ placeHolder, data, className, background }) => {
       <Select
         bg={background || "rgba(255, 255, 255, 0.5)"}
         placeholder={placeHolder}
-        _placeholder={{ color: "#4A4C53", fontWeight: "medium" }}
+        _placeholder={{ color: "#E5E5E5", fontWeight: "medium" }}
         border="#4A4C53"
-        textColor="#4A4C53"
         fontWeight="medium"
         className={className}
       >
