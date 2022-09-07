@@ -12,6 +12,7 @@ const History = () => {
             <Search
               className="w-full mr-10 bg-sand-silver"
               placeHolder="Search history"
+              placeHolderColor="#767680"
               background="sand-silver"
               backgroundIcon="#C4C4C4"
             />
@@ -20,7 +21,7 @@ const History = () => {
                 className="w-full px-5"
                 background="#C4C4C4"
                 placeHolder="Filter"
-                placeHolderColor="#FFF"
+                placeHolderColor="#767680"
                 data={data}
               />
             </div>

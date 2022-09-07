@@ -1,12 +1,18 @@
 import { Select } from "@chakra-ui/react";
 
-const Selects = ({ placeHolder, data, className, background }) => {
+const Selects = ({
+  placeHolder,
+  placeHolderColor,
+  data,
+  className,
+  background,
+}) => {
   return (
     <>
       <Select
         bg={background || "rgba(255, 255, 255, 0.5)"}
         placeholder={placeHolder}
-        _placeholder={{ color: "#E5E5E5", fontWeight: "medium" }}
+        color={placeHolderColor || "#4A4C53"}
         border="#4A4C53"
         fontWeight="medium"
         className={className}

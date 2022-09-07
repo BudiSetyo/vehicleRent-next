@@ -1,7 +1,14 @@
 import { InputGroup, Input, InputRightElement, Icon } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = ({ className, placeHolder, size, onChange, backgroundIcon }) => {
+const Search = ({
+  className,
+  placeHolder,
+  placeHolderColor,
+  size,
+  onChange,
+  backgroundIcon,
+}) => {
   return (
     <>
       <div
@@ -11,7 +18,10 @@ const Search = ({ className, placeHolder, size, onChange, backgroundIcon }) => {
           <Input
             size={size || "lg"}
             placeholder={placeHolder || "Your place holder"}
-            _placeholder={{ color: "#4A4C53", fontWeight: "medium" }}
+            _placeholder={{
+              color: placeHolderColor || "#4A4C53",
+              fontWeight: "medium",
+            }}
             onChange={onChange}
             color="#4A4C53"
           />
