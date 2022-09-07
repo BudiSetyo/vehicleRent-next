@@ -15,11 +15,9 @@ const Search = ({ className, placeHolder, size, onChange, backgroundIcon }) => {
             onChange={onChange}
             color="#4A4C53"
           />
-          <InputRightElement
-            className="mt-1 px-1"
-            bg={backgroundIcon}
-            children={<Icon as={FaSearch} w={5} h={5} />}
-          />
+          <InputRightElement className="mt-1 px-1" bg={backgroundIcon}>
+            <Icon as={FaSearch} w={5} h={5} />
+          </InputRightElement>
         </InputGroup>
       </div>
     </>
