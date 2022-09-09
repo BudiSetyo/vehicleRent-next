@@ -6,6 +6,7 @@ const Selects = ({
   data,
   className,
   background,
+  borderColor,
 }) => {
   return (
     <>
@@ -13,7 +14,7 @@ const Selects = ({
         bg={background || "rgba(255, 255, 255, 0.5)"}
         placeholder={placeHolder}
         color={placeHolderColor || "#4A4C53"}
-        border="#4A4C53"
+        borderColor={borderColor || "#4A4C53"}
         fontWeight="medium"
         className={className}
       >

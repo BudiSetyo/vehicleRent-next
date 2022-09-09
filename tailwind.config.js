@@ -31,6 +31,7 @@ module.exports = {
       "old-silver": "#848484",
       "quick-silver": "#9F9F9F",
       "sand-silver": "#C4C4C4",
+      "boro-silver": "#DADADA",
       "storm-grey": "#767680",
       "ghost-white": "#F9F9FB",
       "pastel-blue": "#B8BECD",

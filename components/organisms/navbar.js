@@ -1,11 +1,11 @@
-import { Tabs, TabList, Tab, IconButton, Icon, Avatar } from "@chakra-ui/react";
+import { Button, IconButton, Icon, Avatar, Wrap } from "@chakra-ui/react";
 import { FaBars, FaRegEnvelope } from "react-icons/fa";
 import { Buttons } from "@/components";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-const Navbar = () => {
+const Navbar = ({ active }) => {
   const router = useRouter();
 
   const [nav, setNav] = useState(false);
@@ -53,28 +53,33 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center">
-            <Tabs variant="unstyled">
-              <TabList>
-                {navbarList.map((item, index) => {
-                  return (
-                    <Tab
-                      _selected={{ color: "#393939" }}
-                      className="text-pastel-blue text-base"
-                      key={index}
-                      onClick={() => {
-                        handleNavigate(
-                          item === "Vehicle Type"
-                            ? "/vehicleType"
-                            : item.toLowerCase()
-                        );
-                      }}
+            <Wrap className="mr-10" spacing="20px">
+              {navbarList.map((item, index) => {
+                return (
+                  <Button
+                    key={index}
+                    variant="unstyled"
+                    onClick={() => {
+                      handleNavigate(
+                        item === "Vehicle Type"
+                          ? "/vehicleType"
+                          : item.toLowerCase()
+                      );
+                    }}
+                  >
+                    <p
+                      className={
+                        active === item.toLocaleLowerCase()
+                          ? "text-old-silver"
+                          : "text-pastel-blue"
+                      }
                     >
                       {item}
-                    </Tab>
-                  );
-                })}
-              </TabList>
-            </Tabs>
+                    </p>
+                  </Button>
+                );
+              })}
+            </Wrap>
 
             {user.login ? (
               <>
