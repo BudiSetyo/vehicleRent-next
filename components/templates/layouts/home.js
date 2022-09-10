@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 const HomeLayout = ({ children }) => {
   const router = useRouter();
-  console.log(router.pathname.split("/")[1]);
 
   return (
     <section className="w-full">
