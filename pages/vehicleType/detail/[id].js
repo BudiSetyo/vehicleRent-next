@@ -1,5 +1,5 @@
 import { MainLayout, Buttons } from "@/components";
-import { Box, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 import { FaAngleLeft, FaHeart } from "react-icons/fa";
 import { useRouter } from "next/router";
 
@@ -10,24 +10,24 @@ const Detail = ({ data }) => {
     return router.back();
   };
 
+  const handleNavigate = (href) => {
+    return router.push(href);
+  };
+
   return (
     <>
       <MainLayout>
         <section className="md:px-20 md:py-10 px-10 py-5">
-          <div>
-            <Box
-              as="button"
-              className="flex items-center"
-              onClick={() => handleBack()}
-            >
+          <div className="flex items-center">
+            <Box as="button" onClick={() => handleBack()}>
               <Icon as={FaAngleLeft} color="#393939" h={10} w={10} />
-              <p className="text-onyx-black text-2xl font-bold ml-5">Back</p>
             </Box>
+            <h1 className="text-onyx-black text-2xl font-bold ml-5">Detail</h1>
           </div>
 
           <section className="mt-16">
             <div className="flex md:flex-row flex-col">
-              <div className="md:mr-20 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center" />
+              <div className="md:mr-16 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center" />
               <div className="md:mt-0 mt-4 w-full flex flex-col justify-between">
                 <div>
                   <h1 className="text-4xl font-bold text-onyx-black">
@@ -79,6 +79,9 @@ const Detail = ({ data }) => {
               className="w-full py-4 px-2"
               textEdit="md:text-xl text-md font-bold"
               text="Reservation"
+              onClick={() => {
+                return handleNavigate("/vehicleType/detail/reservation/1");
+              }}
             />
 
             <div className="w-10" />

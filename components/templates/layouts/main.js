@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
               : router.pathname.split("/")[1]
           }
         />
-        {children}
+        <section className="max-w-screen-xl mx-auto">{children}</section>
         <Footer />
       </section>
     </section>

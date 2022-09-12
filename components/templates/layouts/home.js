@@ -17,7 +17,7 @@ const HomeLayout = ({ children }) => {
           }
         />
         <Cover />
-        {children}
+        <section className="max-w-screen-xl mx-auto">{children}</section>
         <Footer />
       </section>
     </section>

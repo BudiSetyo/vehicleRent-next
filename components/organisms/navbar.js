@@ -27,7 +27,7 @@ const Navbar = ({ active }) => {
 
   return (
     <nav className="fixed bg-white top-0 left-0 right-0 z-10 ">
-      <section className="2xl:container mx-auto md:px-20 md:py-6 px-10 py-3">
+      <section className="max-w-screen-xl container mx-auto md:px-20 md:py-6 px-10 py-3">
         <section className="flex justify-between items-center">
           <div className="w-10 h-10">
             <Image src="/logo.svg" width={"100%"} height={"100%"} />
@@ -63,7 +63,7 @@ const Navbar = ({ active }) => {
                       handleNavigate(
                         item === "Vehicle Type"
                           ? "/vehicleType"
-                          : item.toLowerCase()
+                          : `/${item.toLowerCase()}`
                       );
                     }}
                   >
@@ -152,7 +152,7 @@ const Navbar = ({ active }) => {
                   handleNavigate(
                     item === "Vehicle Type"
                       ? "/vehicleType"
-                      : item.toLowerCase()
+                      : `/${item.toLowerCase()}`
                   );
                   closeNavbar();
                 }}
@@ -184,7 +184,7 @@ const Navbar = ({ active }) => {
                 variant="outline"
                 textColor="onyx-black"
                 onClick={() => {
-                  handleNavigate("signIn");
+                  handleNavigate("/signIn");
                 }}
               />
               <Buttons
@@ -192,7 +192,7 @@ const Navbar = ({ active }) => {
                 text="Register"
                 textColor="onyx-black"
                 onClick={() => {
-                  handleNavigate("signUp");
+                  handleNavigate("/signUp");
                 }}
               />
             </>
