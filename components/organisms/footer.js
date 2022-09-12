@@ -31,7 +31,12 @@ const Footer = () => {
         <div className="flex justify-between border-b-2 border-sand-silver pb-20">
           <div className="lg:max-w-sm w-full">
             <div className="w-10 h-10">
-              <Image src="/logo.svg" width={"100%"} height={"100%"} />
+              <Image
+                alt="logo"
+                src="/logo.svg"
+                width={"100%"}
+                height={"100%"}
+              />
             </div>
 
             <div className="mt-7">
