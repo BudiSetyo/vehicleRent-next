@@ -1,6 +1,4 @@
-import { MainLayout, Search } from "@/components";
-
-import { Popular, Cars, Motorbike, Bike } from "./components";
+import { MainLayout, Search, VehicleList } from "@/components";
 
 const VehicleType = () => {
   return (
@@ -13,7 +11,7 @@ const VehicleType = () => {
         />
 
         <section>
-          <Popular />
+          <VehicleList title="Popular in town" />
         </section>
       </section>
     </MainLayout>

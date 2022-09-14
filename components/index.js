@@ -17,6 +17,7 @@ import Footer from "./organisms/footer";
 import Carousel from "./organisms/carousel";
 import Cover from "./organisms/cover";
 import Modals from "./organisms/modal";
+import VehicleList from "./organisms/vehicleList";
 
 // Templates
 import MainLayout from "./templates/layouts/main";
@@ -38,6 +39,7 @@ export {
   Cover,
   Carousel,
   Modals,
+  VehicleList,
   MainLayout,
   AuthLayout,
   HomeLayout,
