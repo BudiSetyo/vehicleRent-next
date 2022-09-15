@@ -10,6 +10,7 @@ const Inputs = ({
   type,
   background,
   borderColor,
+  onChange,
 }) => {
   return (
     <>
@@ -26,6 +27,7 @@ const Inputs = ({
         className={className}
         size={size}
         type={type}
+        onChange={onChange}
       />
     </>
   );

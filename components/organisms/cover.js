@@ -1,7 +1,23 @@
-import { Inputs, Selects, Buttons } from "@/components";
+import { Inputs, Buttons } from "@/components";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Cover = () => {
-  const sirup = ["Marjan", "ABC"];
+  const router = useRouter();
+
+  const [vehicle, setVehicle] = useState("");
+
+  const handleChangeVehicle = (e) => {
+    setVehicle(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (vehicle === "") {
+      return console.log("Fields can't be empty");
+    }
+
+    return router.push("/vehicleType/detail/12");
+  };
 
   return (
     <section className="bg-third bg-cover bg-center">
@@ -20,17 +36,20 @@ const Cover = () => {
               className="mb-8"
               placeHolder="Type the vehicle (ex. motorbike"
               placeHolderColor="#4A4C53"
+              onChange={handleChangeVehicle}
+              borderColor="rgba(255, 255, 255, 0.5)"
             />
-            <div className="flex mb-8">
+            {/* <div className="flex mb-8">
               <Selects placeHolder="Location" data={sirup} />
               <div className="w-8" />
               <Selects placeHolder="Date" data={sirup} />
-            </div>
+            </div> */}
             <Buttons
               className="px-10 py-2"
               text="Search"
               textColor="onyx-black"
               textEdit="font-bold"
+              onClick={handleSearch}
             />
           </div>
         </div>

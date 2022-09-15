@@ -4,7 +4,7 @@ const Cards = ({ data, onClick }) => {
   return (
     <>
       <Box
-        className="relative w-64 h-80 rounded-md bg-cover bg-center"
+        className="relative w-64 h-80 rounded-md bg-cover bg-center cursor-pointer"
         style={{
           backgroundImage: data?.image || "url('/background/second.png')",
         }}
