@@ -155,7 +155,7 @@ const Navbar = ({ active }) => {
                           <div className="mt-4 flex justify-center">
                             <Button
                               variant="unstyled"
-                              onClick={() => handleNavigate("/chat")}
+                              onClick={() => handleNavigate("/chats")}
                             >
                               <p className="text-lg">View all</p>
                               <Icon w={4} h={4} as={FaChevronDown} />

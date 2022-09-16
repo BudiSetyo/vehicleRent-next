@@ -1,8 +1,13 @@
 import { MainLayout, Search, Selects } from "@/components";
 import { Avatar, Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const Chat = () => {
   const data = ["mie ayam"];
+
+  const router = useRouter();
+
+  const handleNavigate = (href) => router.push(href);
   return (
     <>
       <MainLayout>
@@ -27,7 +32,10 @@ const Chat = () => {
           </div>
 
           <section className="mt-10">
-            <Box className="flex justify-between items-center pb-6 border-b-2">
+            <Box
+              className="flex justify-between items-center pb-6 border-b-2 cursor-pointer"
+              onClick={() => handleNavigate("/chats/messages/1")}
+            >
               <div className="flex items-center">
                 <Avatar size="lg" />
                 <div className="md:ml-6 ml-3">
