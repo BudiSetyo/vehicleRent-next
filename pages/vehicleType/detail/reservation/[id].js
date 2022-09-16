@@ -11,6 +11,8 @@ const Reservation = () => {
   const handleBack = () => {
     return router.back();
   };
+
+  const handleNavigate = (href) => router.push(href);
   return (
     <>
       <MainLayout>
@@ -75,6 +77,9 @@ const Reservation = () => {
             className="w-full mt-10 py-3"
             textEdit="text-lg font-bold"
             text="Go to Payment"
+            onClick={() =>
+              handleNavigate("/vehicleType/detail/reservation/payment/1")
+            }
           />
         </section>
       </MainLayout>
