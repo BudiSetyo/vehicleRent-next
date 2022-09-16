@@ -109,7 +109,7 @@ const Payment = () => {
             <div className="flex items-center">
               <Box
                 as="button"
-                className="md:w-fit w-full flex items-center border-2 rounded-lg px-4 lg:py-3.5 md:py-0.5 py-3.5"
+                className="md:w-fit w-full flex items-center border-2 rounded-lg px-4 lg:py-3 md:py-0.5 py-3"
               >
                 <div className="mx-auto flex">
                   <p className="text-lg mr-4">Select payment methods</p>
