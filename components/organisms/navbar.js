@@ -9,20 +9,19 @@ import { Buttons } from "@/components";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout } from "@/configs";
 
 const Navbar = ({ active }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [nav, setNav] = useState(false);
   const [profileNav, setProfileNav] = useState(false);
   const [messageNav, setMessageNav] = useState(false);
 
   const navbarList = ["Home", "Vehicle Type", "History", "About"];
-  const user = {
-    name: "Kojok Lam",
-    notif: 2,
-    login: true,
-  };
 
   const closeNavbar = () => {
     setNav(false);
@@ -38,6 +37,10 @@ const Navbar = ({ active }) => {
 
   const handleMessageNav = () => {
     setMessageNav(!messageNav);
+  };
+
+  const handleLogout = () => {
+    return dispatch(userLogout());
   };
 
   return (
@@ -102,7 +105,7 @@ const Navbar = ({ active }) => {
                 })}
               </Wrap>
 
-              {user.login ? (
+              {user.isLogin ? (
                 <>
                   <div className="ml-20 flex items-center">
                     <div>
@@ -196,6 +199,7 @@ const Navbar = ({ active }) => {
                             as="button"
                             className="flex items-center justify-between px-5 py-4 "
                             variant="unstyled"
+                            onClick={handleLogout}
                           >
                             <p className="text-lg font-bold">Log out</p>
                             <Icon
@@ -263,7 +267,7 @@ const Navbar = ({ active }) => {
           </div>
 
           <div className="flex flex-col">
-            {user.login ? (
+            {user.isLogin ? (
               <>
                 <Buttons
                   className="w-full mb-2 py-2"

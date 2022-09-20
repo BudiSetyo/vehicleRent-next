@@ -1,0 +1,304 @@
+{
+  "objects": [
+    {
+      "ID": "b98b752e-8e24-45ac-9290-be53dbe073a1",
+      "vehicle": "Ford Kuga",
+      "cost": "694274",
+      "Location": "Lyon",
+      "vehicleType": "2",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "cd6c4bdd-0004-4e15-9afe-29997565840d",
+      "vehicle": "Fiat 500",
+      "cost": "579854",
+      "Location": "London",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "957aa47c-7852-4ed7-830a-bf4a86d00d5b",
+      "vehicle": "Dacia Duster",
+      "cost": "950518",
+      "Location": "Washington",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "e15b9892-84c3-4274-8151-57affc5d4491",
+      "vehicle": "BMW M4",
+      "cost": "245699",
+      "Location": "Laredo",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "db676bc9-64c8-4703-97c6-a042d32f2bc4",
+      "vehicle": "Mazda CX3",
+      "cost": "560135",
+      "Location": "Valetta",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "06829b22-76d7-40cc-a28c-1382a02fe429",
+      "vehicle": "Fiat Panda",
+      "cost": "408758",
+      "Location": "Wien",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "fd37653b-28b2-4cde-baec-3e4d086fc15c",
+      "vehicle": "Honda Civic",
+      "cost": "894866",
+      "Location": "Tokyo",
+      "vehicleType": "2",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "035268fd-7d16-4593-bfeb-e3ae82df93d9",
+      "vehicle": "Citroen C4",
+      "cost": "415593",
+      "Location": "Long Beach",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "0ef16c8c-7618-41bf-887f-9a5e3d1327fc",
+      "vehicle": "Citroen Nemo",
+      "cost": "871934",
+      "Location": "Indianapolis",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "3ff8aa84-1f2a-4cf3-bc9d-5ece93ec7c61",
+      "vehicle": "BMW X1",
+      "cost": "975595",
+      "Location": "Oakland",
+      "vehicleType": "1",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "186c9164-bcfe-45bc-a41e-6e1840c0035f",
+      "vehicle": "Hyundai i20",
+      "cost": "405636",
+      "Location": "Reno",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "7ec56ec3-0e8e-4df2-aa75-d03d4796ce0a",
+      "vehicle": "BMW M4",
+      "cost": "303983",
+      "Location": "Seattle",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "2adf857f-2d59-4720-8286-52f6f67880fb",
+      "vehicle": "BMW M4",
+      "cost": "261190",
+      "Location": "Otawa",
+      "vehicleType": "1",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "602df7f9-8ccb-46fd-a023-63ca15ff7372",
+      "vehicle": "Citroen C3",
+      "cost": "704330",
+      "Location": "Fayetteville",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "9bd314dc-f5ec-4ccd-8d56-1b4046765720",
+      "vehicle": "Fiat Freemont",
+      "cost": "466827",
+      "Location": "San Francisco",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "9b64e345-3eac-445e-bd50-3072875c9225",
+      "vehicle": "Dacia Logan",
+      "cost": "694818",
+      "Location": "Jersey City",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "f3ad76ad-9ec6-4811-85ec-98d1604653a8",
+      "vehicle": "Honda CRV",
+      "cost": "249118",
+      "Location": "Colorado Springs",
+      "vehicleType": "1",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "0875717f-07e7-4f96-8241-0980ae1ce086",
+      "vehicle": "Fiat Freemont",
+      "cost": "204918",
+      "Location": "Hollywood",
+      "vehicleType": "1",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "c08cd05a-83ba-4287-b7eb-7e323707e1e9",
+      "vehicle": "Fiat Tipo",
+      "cost": "714753",
+      "Location": "Nashville",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "de27c43c-a7b6-4fd1-87f9-71cb8278cc85",
+      "vehicle": "Mitsubishi Outlander",
+      "cost": "208825",
+      "Location": "Milano",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "5eb5e8fc-ea45-4af2-906d-a1e355e68091",
+      "vehicle": "Kia Ceed",
+      "cost": "560299",
+      "Location": "Glendale",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "b031b0ab-cf1f-4a7e-a44f-53dfffdfb40e",
+      "vehicle": "Hyundai i30",
+      "cost": "432048",
+      "Location": "Minneapolis",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "d7e512d9-06ac-419c-bc68-77f1435d8b99",
+      "vehicle": "Mazda CX3",
+      "cost": "501152",
+      "Location": "Berna",
+      "vehicleType": "3",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "8d810381-9561-400d-8706-d8fceb3b9ee1",
+      "vehicle": "Opel Insignia",
+      "cost": "947608",
+      "Location": "Bakersfield",
+      "vehicleType": "2",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "87767d5b-cb15-4996-9f46-02ef9df4ca97",
+      "vehicle": "Audi A5",
+      "cost": "432170",
+      "Location": "Prague",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "True"
+    },
+    {
+      "ID": "3679bf9e-a076-4fcc-9d72-622b602a0c1d",
+      "vehicle": "Citroen Nemo",
+      "cost": "320069",
+      "Location": "Scottsdale",
+      "vehicleType": "2",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "True"
+    },
+    {
+      "ID": "d77d489e-5482-4c08-ade7-2808c46f4e97",
+      "vehicle": "Mitsubishi Lancer",
+      "cost": "982439",
+      "Location": "Santa Ana",
+      "vehicleType": "3",
+      "prePayment": "True",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "f14524bb-3f92-4beb-8e57-67ff296234ea",
+      "vehicle": "Kia Soul",
+      "cost": "236285",
+      "Location": "Madison",
+      "vehicleType": "3",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "False"
+    },
+    {
+      "ID": "85af85e7-de2b-4b04-a413-dd34ae8a4e7e",
+      "vehicle": "Audi TT",
+      "cost": "790879",
+      "Location": "Henderson",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "True",
+      "isPopular": "False"
+    },
+    {
+      "ID": "69606e63-7af0-4165-84d7-6d77b518ef7f",
+      "vehicle": "Audi Q1",
+      "cost": "673583",
+      "Location": "Springfield",
+      "vehicleType": "1",
+      "prePayment": "False",
+      "isAvailable": "False",
+      "isPopular": "False"
+    }
+  ]
+}

@@ -1,13 +1,42 @@
 import { AuthLayout, Buttons, Inputs } from "@/components";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userLogin } from "@/configs";
 
 const SignIn = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  // const userData = useSelector((state) => state.user);
+  // console.log(userData);
+
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleNavigate = (href) => {
     return router.push(href);
   };
+
+  const handleEmail = (e) => {
+    setLogin({ ...login, email: e.target.value });
+  };
+
+  const handlePassword = (e) => {
+    setLogin({ ...login, password: e.target.value });
+  };
+
+  const handleLogin = () => {
+    if (login.email === "" || login.password === "") {
+      return console.log("Fields can't be empty");
+    }
+
+    dispatch(userLogin(login));
+    return handleNavigate("/home");
+  };
+
   return (
     <AuthLayout>
       <section className="bg-third bg-cover bg-center">
@@ -51,6 +80,7 @@ const SignIn = () => {
                   textColor="#FFF"
                   size="lg"
                   fontWeight="md"
+                  onChange={handleEmail}
                 />
 
                 <Inputs
@@ -61,6 +91,7 @@ const SignIn = () => {
                   size="lg"
                   fontWeight="md"
                   type="password"
+                  onChange={handlePassword}
                 />
 
                 <Button
@@ -79,6 +110,7 @@ const SignIn = () => {
                   text="Sign In"
                   textColor="onyx-black"
                   textEdit="text-xl font-bold"
+                  onClick={handleLogin}
                 />
               </div>
 

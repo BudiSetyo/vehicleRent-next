@@ -6,6 +6,7 @@ const Cover = () => {
   const router = useRouter();
 
   const [vehicle, setVehicle] = useState("");
+  // const [searchVisible, setSearchVisible] = useState(false);
 
   const handleChangeVehicle = (e) => {
     setVehicle(e.target.value);
@@ -39,6 +40,12 @@ const Cover = () => {
               onChange={handleChangeVehicle}
               borderColor="rgba(255, 255, 255, 0.5)"
             />
+
+            {/* <div className={`relative ${searchVisible ? "" : "hidden"}`}>
+              <div className="absolute bg-white p-4 rounded">
+                <h1>Data</h1>
+              </div>
+            </div> */}
             {/* <div className="flex mb-8">
               <Selects placeHolder="Location" data={sirup} />
               <div className="w-8" />
