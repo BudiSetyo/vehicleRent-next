@@ -11,6 +11,8 @@ const Inputs = ({
   background,
   borderColor,
   onChange,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <>
@@ -28,6 +30,8 @@ const Inputs = ({
         size={size}
         type={type}
         onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </>
   );

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "baseUrl": ".",
     "paths": {
       "@/components": ["components/index"],
@@ -8,5 +9,6 @@
       "@/helpers": ["helpers/index"],
       "@/utils": ["utils/index"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }

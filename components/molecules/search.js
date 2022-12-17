@@ -8,6 +8,8 @@ const Search = ({
   size,
   onChange,
   backgroundIcon,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <>
@@ -24,6 +26,9 @@ const Search = ({
             }}
             onChange={onChange}
             color="#4A4C53"
+            className="mr-7"
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
           <InputRightElement className="mt-1 px-1" bg={backgroundIcon}>
             <Icon as={FaSearch} w={5} h={5} />
