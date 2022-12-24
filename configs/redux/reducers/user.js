@@ -1,30 +1,20 @@
-const initialValue = {
-  email: "",
-  password: "",
-  isLogin: false,
-  name: "Jhon Doe",
-  notif: 12,
-};
+const initialValue = {};
 const userReducer = (state = initialValue, action) => {
   switch (action.type) {
     case "USER_LOGIN":
       return {
         ...state,
-        email: action.payload.email,
-        password: action.payload.password,
+        data: { ...action.payload.data, notif: 10 },
         isLogin: true,
-        name: "Jhon Doe",
-        notif: 12,
+        token: action.payload.token,
       };
 
     case "USER_LOGOUT":
       return {
         ...state,
-        email: "",
-        password: "",
+        data: {},
         isLogin: false,
-        name: "Jhon Doe",
-        notif: 12,
+        token: "",
       };
 
     default:

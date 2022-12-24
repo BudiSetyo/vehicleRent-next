@@ -7,15 +7,18 @@ import {
 } from "react-icons/fa";
 import { Buttons } from "@/components";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "@/configs";
+// import axios from "axios";
+// const api = process.env.API_URL;
 
 const Navbar = ({ active }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  // console.log(user);
 
   const [nav, setNav] = useState(false);
   const [profileNav, setProfileNav] = useState(false);
@@ -43,6 +46,29 @@ const Navbar = ({ active }) => {
     return dispatch(userLogout());
   };
 
+  // const getUserProfile = () => {
+  //   if (user.isLogin) {
+  //     axios({
+  //       method: "get",
+  //       url: `${api}/users/`,
+  //       headers: {
+  //         Authorization: `Bearer ${user.token}`,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         console.log(response);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  //   return;
+  // };
+
+  // useEffect(() => {
+  //   getUserProfile();
+  // }, []);
+
   return (
     <section>
       <nav className="fixed bg-white top-0 left-0 right-0 z-10 ">
@@ -61,10 +87,10 @@ const Navbar = ({ active }) => {
               <div className="relative">
                 <div
                   className={`${
-                    user.notif !== 0 ? "absolute" : "hidden"
+                    user.data?.notif !== 0 || undefined ? "absolute" : "hidden"
                   } top-0 left-0 bg-crayola-orange h-5 w-5 flex justify-center items-center rounded-full z-10`}
                 >
-                  <p className="text-xs font-bold">{user.notif}</p>
+                  <p className="text-xs font-bold">{user.data?.notif}</p>
                 </div>
                 <IconButton
                   variant="unstyled"
@@ -112,10 +138,12 @@ const Navbar = ({ active }) => {
                       <div className="mr-6 relative">
                         <div
                           className={`${
-                            user.notif !== 0 ? "absolute" : "hidden"
+                            user.data?.notif !== 0 ? "absolute" : "hidden"
                           } top-0 left-0 bg-crayola-orange h-5 w-5 flex justify-center items-center rounded-full z-10`}
                         >
-                          <p className="text-xs font-bold">{user.notif}</p>
+                          <p className="text-xs font-bold">
+                            {user.data?.notif}
+                          </p>
                         </div>
                         <IconButton
                           variant="unstyled"
@@ -170,7 +198,7 @@ const Navbar = ({ active }) => {
                     <div>
                       <Avatar
                         className="cursor-pointer"
-                        name={user.name}
+                        name={user.data.name}
                         size="md"
                         onClick={handleProvileNav}
                       />

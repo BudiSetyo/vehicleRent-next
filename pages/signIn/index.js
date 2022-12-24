@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userLogin } from "@/configs";
+import axios from "axios";
+
+const api = process.env.API_URL;
 
 const SignIn = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  // const userData = useSelector((state) => state.user);
-  // console.log(userData);
 
   const [login, setLogin] = useState({
     email: "",
@@ -33,8 +34,21 @@ const SignIn = () => {
       return console.log("Fields can't be empty");
     }
 
-    dispatch(userLogin(login));
-    return handleNavigate("/home");
+    axios({
+      method: "post",
+      url: `${api}/auth/login`,
+      data: {
+        email: login.email,
+        password: login.password,
+      },
+    })
+      .then((response) => {
+        dispatch(userLogin(response.data));
+        return handleNavigate("/home");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
