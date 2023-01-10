@@ -5,10 +5,11 @@ import {
   Buttons,
   DatePicker,
 } from "@/components";
-import { Box, Icon, IconButton, Spinner } from "@chakra-ui/react";
+import { Box, Icon, IconButton } from "@chakra-ui/react";
 import { FaAngleLeft, FaPlus, FaMinus } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import moment from "moment";
 import axios from "axios";
 const api = process.env.API_URL;
 
@@ -19,13 +20,12 @@ const Reservation = () => {
   const [vehicleData, setVehicleData] = useState({});
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState({
-    quantity: 0,
-    startDate: "",
-    endDate: "",
-    price: "",
+    quantity: 1,
+    startDate: new Date(),
+    days: 1,
   });
 
-  const data = ["marjan"];
+  const days = [1, 2, 3];
 
   const handleBack = () => {
     return router.back();
@@ -58,19 +58,29 @@ const Reservation = () => {
   };
 
   const addReservation = () => {
+    setLoading(true);
+
     axios({
       method: "post",
-      url: `${api}/reservations?userId=&vehicleId=`,
+      url: `${api}/reservations?userId=a519b746-58ef-481b-8b8e-73420249b8c7&vehicleId=${vehicleData.id}`,
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTliNzQ2LTU4ZWYtNDgxYi04YjhlLTczNDIwMjQ5YjhjNyIsImVtYWlsIjoiaGVoZWhlQGdtYWlsLmNvbSIsIm5hbWUiOiJoZWhlYm95IiwiaWF0IjoxNjczMzA4OTQ3LCJleHAiOjE2NzMzOTUzNDd9.yFYblkyuuRjd3pK3QJSg8v5xnYhvNwffMWO7adhHv14`,
+      },
       data: {
         quantity: value.quantity,
-        startDate: "",
-        endDate: "",
+        startDate: moment(value.startDate).format("YYYY-MM-DD, h:mm:ss"),
+        endDate: moment().add(value.days, "days").format("YYYY-MM-DD, h:mm:ss"),
         paymentType: "transfer",
         statusPayment: false,
-        paymentCode: "",
-        price: "",
+        paymentCode: "asdasd",
+        price: vehicleData.price * value.quantity * value.days,
       },
-    });
+    })
+      .then(() => {
+        setLoading(false);
+        handleNavigate("/vehicleType/detail/reservation/payment/1");
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -106,7 +116,7 @@ const Reservation = () => {
                     {vehicleData?.location || "Location"}
                   </h2>
                   <p className="text-xl text-sangria-red mt-4">
-                    {data?.prePayment || "No prepayment"}
+                    {"No prepayment"}
                   </p>
                 </div>
 
@@ -114,13 +124,16 @@ const Reservation = () => {
                   <IconButton
                     _hover={{ backgroundColor: "#FFCD61" }}
                     icon={<Icon w={6} h={6} as={FaMinus} />}
-                    disabled={value.quantity <= 0 ? true : false}
+                    disabled={value.quantity <= 1 ? true : false}
                     onClick={() => handleValue("min")}
                   />
                   <h1 className="mx-10 text-3xl font-bold">{value.quantity}</h1>
                   <IconButton
                     backgroundColor="#FFCD61"
                     icon={<Icon w={6} h={6} as={FaPlus} />}
+                    disabled={
+                      value.quantity >= vehicleData.stock ? true : false
+                    }
                     onClick={() => handleValue("plus")}
                   />
                 </div>
@@ -128,14 +141,25 @@ const Reservation = () => {
                 <div className="mt-4">
                   <h1 className="text-xl font-bold">Reservation Date :</h1>
                   <div className="bg-boro-silver mt-4 px-3 py-2 rounded">
-                    <DatePicker />
+                    <DatePicker
+                      date={value.startDate}
+                      onChange={(date) =>
+                        setValue({ ...value, startDate: date })
+                      }
+                    />
                   </div>
                   <div className="mt-4">
                     <Selects
                       background="#DADADA"
-                      data={data}
+                      data={days}
                       borderColor="#DADADA"
-                      placeHolder="1 Day"
+                      placeHolder="Days"
+                      onChange={(e) =>
+                        setValue({
+                          ...value,
+                          days: parseInt(e.target.value),
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -147,9 +171,7 @@ const Reservation = () => {
             className="w-full mt-10 py-3"
             textEdit="text-lg font-bold"
             text="Go to Payment"
-            onClick={() =>
-              handleNavigate("/vehicleType/detail/reservation/payment/1")
-            }
+            onClick={() => addReservation()}
           />
         </section>
       </MainLayout>

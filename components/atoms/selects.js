@@ -7,6 +7,7 @@ const Selects = ({
   className,
   background,
   borderColor,
+  onChange,
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const Selects = ({
         borderColor={borderColor || "#4A4C53"}
         fontWeight="medium"
         className={className}
+        onChange={onChange}
       >
         {data.map((item, index) => {
           return (
