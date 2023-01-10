@@ -3,6 +3,8 @@ import Buttons from "./atoms/buttons";
 import Inputs from "./atoms/inputs";
 import Selects from "./atoms/selects";
 import ButtonArrow from "./atoms/buttonArrow";
+import DatePicker from "./atoms/datePicker";
+import Loading from "./atoms/loading";
 
 // Molecules
 import Cards from "./molecules/cards";
@@ -45,4 +47,6 @@ export {
   MainLayout,
   AuthLayout,
   HomeLayout,
+  DatePicker,
+  Loading,
 };

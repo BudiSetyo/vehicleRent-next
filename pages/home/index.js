@@ -1,6 +1,6 @@
 import { HomeLayout, ButtonArrow, Cards, CardReview } from "@/components";
 import { Wrap } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Home() {
@@ -16,9 +16,18 @@ export default function Home() {
           </div>
 
           <Wrap className="mt-10" justify="space-between" spacing="30px">
-            {vehicleData.map((vehicle, index) => {
-              return <Cards key={index} />;
-            })}
+            {vehicleData
+              .filter((popular) => popular.isPopular)
+              .filter((_, index) => index < 4)
+              .map((vehicle, index) => {
+                return (
+                  <Cards
+                    key={index}
+                    name={vehicle.name}
+                    location={vehicle.location}
+                  />
+                );
+              })}
           </Wrap>
         </section>
 

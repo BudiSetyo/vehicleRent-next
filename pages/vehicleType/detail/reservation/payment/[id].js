@@ -2,6 +2,9 @@ import { Buttons, MainLayout } from "@/components";
 import { IconButton, Icon, Box } from "@chakra-ui/react";
 import { FaAngleLeft, FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+const api = process.env.API_URL;
 
 const Payment = () => {
   const router = useRouter();

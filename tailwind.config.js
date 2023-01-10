@@ -39,6 +39,8 @@ module.exports = {
       "sangria-red": "#9B0A0A",
       "crayola-orange": "#FFCD61",
       "wrap-opacity": "rgba(0, 0, 0, 0.3)",
+      "wrap-loading": "rgba(0, 0, 0, 0.7)",
+      transparant: "rgba(0, 0, 0, 0)",
     },
   },
   plugins: [],
