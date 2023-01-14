@@ -15,7 +15,7 @@ const Cover = () => {
           <div className="max-w-md">
             <h3 className="text-xl text-white mb-10">Vehicle Finder</h3>
             <div className="border-b-2 w-4 mb-10" />
-            <AutoComplete data={vehicleData} />
+            <AutoComplete placeHolder="Search cars name" data={vehicleData} />
             <div className="mb-10" />
           </div>
         </div>

@@ -2,17 +2,26 @@ import { HomeLayout, ButtonArrow, Cards, CardReview } from "@/components";
 import { Wrap } from "@chakra-ui/react";
 // import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+
   const vehicleData = useSelector((state) => state.vehicles);
-  // console.log(vehicleData);
+
+  const handleNavigate = (href) => {
+    return router.push(href);
+  };
   return (
     <HomeLayout>
       <section className="md:py-8 md:px-20 py-4 px-10">
         <section className="mt-10">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold">Popular in town</h1>
-            <ButtonArrow text="View all" />
+            <ButtonArrow
+              onClick={() => handleNavigate("/vehicleType/category/popular")}
+              text="View all"
+            />
           </div>
 
           <Wrap className="mt-10" justify="space-between" spacing="30px">

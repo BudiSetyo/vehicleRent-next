@@ -1,9 +1,9 @@
-import { AuthLayout, Buttons, Inputs } from "@/components";
+import { AuthLayout, Buttons, Inputs, Loading, loading } from "@/components";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { userLogin } from "@/configs";
+import { userLogin, setHistory } from "@/configs";
 import axios from "axios";
 
 const api = process.env.API_URL;
@@ -16,6 +16,8 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleNavigate = (href) => {
     return router.push(href);
@@ -30,7 +32,9 @@ const SignIn = () => {
   };
 
   const handleLogin = () => {
+    setLoading(true);
     if (login.email === "" || login.password === "") {
+      setLoading(false);
       return console.log("Fields can't be empty");
     }
 
@@ -44,7 +48,9 @@ const SignIn = () => {
     })
       .then((response) => {
         dispatch(userLogin(response.data));
-        return handleNavigate("/home");
+        dispatch(setHistory(response.data.token));
+        setLoading(false);
+        return handleNavigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +60,7 @@ const SignIn = () => {
   return (
     <AuthLayout>
       <section className="bg-third bg-cover bg-center">
+        {loading ? <Loading /> : <div />}
         <section className="bg-wrap-opacity">
           <section className="max-w-screen-xl mx-auto flex md:flex-row flex-col md:justify-between md:py-28 md:px-20 px-10 py-12 ">
             <div className="w-full">

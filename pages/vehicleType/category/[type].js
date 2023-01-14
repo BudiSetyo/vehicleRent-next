@@ -23,9 +23,32 @@ const VehicleType = () => {
         />
 
         <section>
-          <VehicleList title="Popular in town">
+          <VehicleList
+            title={
+              type === "popular"
+                ? "Popular in town"
+                : type === "cars"
+                ? "Cars"
+                : type === "moto-bike"
+                ? "Moto bike"
+                : type === "bike"
+                ? "Bike"
+                : "Your title"
+            }
+            hidden={true}
+          >
             {vehicleData
-              .filter((popular) => popular.isPopular)
+              .filter((vehicles) =>
+                type === "popular"
+                  ? vehicles.isPopular
+                  : type === "cars"
+                  ? vehicles.type === "car"
+                  : type === "moto-bike"
+                  ? vehicles.type === "moto bike"
+                  : type === "bike"
+                  ? vehicles.type === "bike"
+                  : vehicles
+              )
               .map((vehicle, index) => {
                 return (
                   <Cards

@@ -43,7 +43,8 @@ const Navbar = ({ active }) => {
   };
 
   const handleLogout = () => {
-    return dispatch(userLogout());
+    dispatch(userLogout());
+    return handleNavigate("/");
   };
 
   // const getUserProfile = () => {
@@ -111,7 +112,9 @@ const Navbar = ({ active }) => {
                       variant="unstyled"
                       onClick={() => {
                         handleNavigate(
-                          item === "Vehicle Type"
+                          item === "Home"
+                            ? "/"
+                            : item === "Vehicle Type"
                             ? "/vehicleType"
                             : `/${item.toLowerCase()}`
                         );

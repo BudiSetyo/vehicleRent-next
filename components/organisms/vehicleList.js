@@ -1,29 +1,29 @@
 import { ButtonArrow, Cards, Modals, Buttons } from "@/components";
 
 import { Wrap } from "@chakra-ui/react";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+// import { useState } from "react";
+// import { useRouter } from "next/router";
+// import { useSelector } from "react-redux";
 
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from "@chakra-ui/react";
+// import {
+//   Table,
+//   Thead,
+//   Tbody,
+//   Tr,
+//   Th,
+//   Td,
+//   TableContainer,
+// } from "@chakra-ui/react";
 
-const VehicleList = ({ title, children, viewAll }) => {
-  const router = useRouter();
+const VehicleList = ({ title, children, viewAll, hidden }) => {
+  // const router = useRouter();
 
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   // const vehicleData = useSelector((state) => state.vehicles);
 
-  const handleModal = () => {
-    return setModal(!modal);
-  };
+  // const handleModal = () => {
+  //   return setModal(!modal);
+  // };
 
   // const handleNavigate = (href) => {
   //   return router.push(href);
@@ -34,7 +34,11 @@ const VehicleList = ({ title, children, viewAll }) => {
         <section className="mt-20">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold">{title || "Your title"}</h1>
-            <ButtonArrow onClick={viewAll} text="View all" />
+            <ButtonArrow
+              className={`${hidden ? "hidden" : ""}`}
+              onClick={viewAll}
+              text="View all"
+            />
           </div>
 
           <Wrap className="mt-10" justify="space-between" spacing="30px">
@@ -42,7 +46,7 @@ const VehicleList = ({ title, children, viewAll }) => {
           </Wrap>
         </section>
 
-        <Modals
+        {/* <Modals
           isOpen={modal}
           title={title || "Your title"}
           onClose={handleModal}
@@ -70,7 +74,7 @@ const VehicleList = ({ title, children, viewAll }) => {
               </Table>
             </TableContainer>
           </div>
-        </Modals>
+        </Modals> */}
       </section>
     </>
   );

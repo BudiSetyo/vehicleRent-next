@@ -1,24 +1,80 @@
-import { Buttons, MainLayout } from "@/components";
+import { Buttons, MainLayout, Loading, Selects } from "@/components";
 import { IconButton, Icon, Box } from "@chakra-ui/react";
 import { FaAngleLeft, FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import moment from "moment";
 import axios from "axios";
 const api = process.env.API_URL;
 
 const Payment = () => {
   const router = useRouter();
+  const { id } = router.query;
+  const userData = useSelector((state) => state.user);
+
+  const [loading, setLoading] = useState(false);
+  const [reservation, setReservation] = useState({});
+  const vehicleData = reservation.vehicle || {};
+  const reservationData = reservation.reservation || {};
+
+  // console.log(reservationData);
 
   const data = ["cash", "transfer"];
+
+  const fetchData = () => {
+    if (id) {
+      setLoading(true);
+
+      axios({
+        method: "get",
+        url: `${api}/reservations/detail/${id}`,
+      })
+        .then((response) => {
+          setLoading(false);
+          setReservation(response.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const handlePayment = () => {
+    setLoading(true);
+    axios({
+      method: "patch",
+      url: `${api}/payments?reservationId=${id}`,
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+      },
+      data: {
+        statusPayment: true,
+      },
+    })
+      .then((_) => {
+        setLoading(false);
+        handleNavigate("/history");
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleBack = () => {
     return router.back();
   };
 
+  const handleNavigate = (href) => router.push(href);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <MainLayout>
         <section className="md:px-20 md:py-8 px-10 py-4">
+          {loading ? <Loading /> : <div />}
+
           <div className="flex items-center ">
             <IconButton
               variant="unstyled"
@@ -34,9 +90,11 @@ const Payment = () => {
             <div className="w-full md:mt-0 mt-4">
               <div>
                 <h1 className="text-4xl font-bold text-onyx-black">
-                  Vehicle - Color
+                  {vehicleData?.name || "Vehicle"}
                 </h1>
-                <h2 className="text-2xl text-onyx-black">Location</h2>
+                <h2 className="text-2xl text-onyx-black">
+                  {vehicleData.location || "Location"}
+                </h2>
                 <h2 className="mt-4 text-2xl font-medium text-sand-silver">
                   No prepayment
                 </h2>
@@ -47,7 +105,7 @@ const Payment = () => {
           <section className="mt-10 flex md:flex-row flex-col">
             <div className="w-full flex py-4 border-2 rounded-lg">
               <p className="mx-auto lg:text-xl text-md font-medium">
-                Quantity : 2 bikes
+                Quantity : {reservationData.quantity} vehicle
               </p>
             </div>
 
@@ -56,7 +114,10 @@ const Payment = () => {
             <div className="w-full flex py-4 md:mt-0 mt-4 border-2 rounded-lg">
               <p className="mx-auto lg:text-xl text-md font-medium">
                 Reservation Date :
-                <span className="text-sand-silver"> Jan 18 - 20 2021</span>
+                <span className="text-sand-silver">
+                  {" "}
+                  {moment(reservationData.startDate).format("DD-MM-YYYY")}
+                </span>
               </p>
             </div>
           </section>
@@ -67,10 +128,11 @@ const Payment = () => {
                 <p className="mb-4 lg:text-xl text-md font-medium">
                   Order details :
                 </p>
-                <p className="lg:text-xl text-md">1 bike : Rp. 78.000</p>
-                <p className="lg:text-xl text-md">1 bike : Rp. 78.000</p>
+                <p className="lg:text-xl text-md">
+                  {reservationData.quantity} vehicle : Rp. {vehicleData.price}
+                </p>
                 <p className="mt-4 lg:text-xl text-md font-medium">
-                  Total : 178.000
+                  Total : Rp. {reservationData.price}
                 </p>
               </div>
             </div>
@@ -82,14 +144,19 @@ const Payment = () => {
                 <p className="mx-auto lg:text-xl text-md font-medium">
                   Identity :
                 </p>
-                <p className="lg:text-xl text-md">Samantha Doe (+6290987682)</p>
-                <p className="lg:text-xl text-md">samanthadoe@mail.com</p>
+                <p className="lg:text-xl text-md">
+                  {reservationData.userName}
+                  {reservationData.phoneNumber
+                    ? `(${reservationData.phoneNumber})`
+                    : ""}
+                </p>
+                <p className="lg:text-xl text-md">{reservationData.email}</p>
               </div>
             </div>
           </section>
 
           <div className="mt-10 flex md:flex-row flex-col">
-            <div className="flex md:flex-row flex-col md:items-center md:mb-0 mb-4">
+            {/* <div className="flex md:flex-row flex-col md:items-center md:mb-0 mb-4">
               <h1 className="lg:text-xl text-lg font-bold md:mb-0 mb-4">
                 Payment code :
               </h1>
@@ -107,17 +174,23 @@ const Payment = () => {
               </div>
             </div>
 
-            <div className="w-10 md:block hidden" />
+            <div className="w-10 md:block hidden" /> */}
 
             <div className="flex items-center">
               <Box
                 as="button"
                 className="md:w-fit w-full flex items-center border-2 rounded-lg px-4 lg:py-3 md:py-0.5 py-3"
               >
-                <div className="mx-auto flex">
+                {/* <div className="mx-auto flex">
                   <p className="text-lg mr-4">Select payment methods</p>
                   <Icon w={8} h={8} as={FaAngleDown} />
-                </div>
+                </div> */}
+                <Selects
+                  placeHolder="Select payment methods"
+                  data={data}
+                  size="lg"
+                  borderColor="rgba(0, 0, 0, 0)"
+                />
               </Box>
             </div>
           </div>
@@ -127,6 +200,7 @@ const Payment = () => {
               className="w-full px-4 py-3"
               text="Finish payment"
               textEdit="text-xl font-semibold"
+              onClick={() => handlePayment()}
             />
           </div>
         </section>

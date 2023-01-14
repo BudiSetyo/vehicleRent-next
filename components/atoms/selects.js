@@ -8,6 +8,7 @@ const Selects = ({
   background,
   borderColor,
   onChange,
+  size,
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const Selects = ({
         color={placeHolderColor || "#4A4C53"}
         borderColor={borderColor || "#4A4C53"}
         fontWeight="medium"
+        size={size}
         className={className}
         onChange={onChange}
       >

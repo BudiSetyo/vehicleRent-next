@@ -3,14 +3,18 @@ import {
   Search,
   Selects,
   Cards,
-  TodayHistory,
-  WeekHistory,
+  RowHistory,
+  DetailHistory,
 } from "@/components";
 import { Wrap, Box, Icon } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const History = () => {
+  const historyData = useSelector((state) => state.history);
+  // console.log(historyData);
   const data = ["bon"];
+
   return (
     <MainLayout>
       <section className="flex lg:flex-row flex-col md:py-8 md:px-20 py-4 px-10">
@@ -37,18 +41,32 @@ const History = () => {
           <div className="mt-12">
             <div>
               <div>
-                <h1 className="text-2xl text-sand-silver">Today</h1>
+                <h1 className="text-2xl text-sand-silver">History</h1>
                 <div className="mt-12">
-                  <TodayHistory />
-                  <TodayHistory />
-                </div>
-              </div>
-
-              <div className="mt-12">
-                <h1 className="text-2xl text-sand-silver">A week ago</h1>
-                <div className="mt-12">
-                  <WeekHistory />
-                  <WeekHistory />
+                  {historyData.map((history, index) => {
+                    return (
+                      <RowHistory
+                        title={
+                          history.payment.statusPayment
+                            ? `Your ${history.vehicleReservation.name} payment has been confirmed!`
+                            : `Please finish your payment for ${history.vehicleReservation.name}`
+                        }
+                        key={index}
+                      >
+                        <DetailHistory
+                          name={history.vehicleReservation.name}
+                          date={history.startDate}
+                          prePayment={"No Prepayment"}
+                          status={history.payment.statusPayment}
+                          statusName={
+                            history.payment.statusPayment
+                              ? "Confirmed"
+                              : "Finish Your Payment"
+                          }
+                        />
+                      </RowHistory>
+                    );
+                  })}
                 </div>
               </div>
             </div>

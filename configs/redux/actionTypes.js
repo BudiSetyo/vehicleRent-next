@@ -5,4 +5,7 @@ export const actionTypes = {
 
   // Vehicles
   SET_VEHICLES: "SET_VEHICLES",
+
+  // History
+  SET_HISTORY: "SET_HISTORY",
 };

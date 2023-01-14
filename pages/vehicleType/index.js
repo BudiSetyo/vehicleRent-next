@@ -46,7 +46,12 @@ const VehicleType = () => {
               })}
           </VehicleList>
 
-          <VehicleList title="Cars">
+          <VehicleList
+            title="Cars"
+            viewAll={() => {
+              handleNavigate(`/vehicleType/category/cars`);
+            }}
+          >
             {vehicleData
               .filter((popular) => popular.type === "car")
               .filter((_, index) => index < 4)
@@ -64,7 +69,12 @@ const VehicleType = () => {
               })}
           </VehicleList>
 
-          <VehicleList title="Motorbike">
+          <VehicleList
+            title="Motorbike"
+            viewAll={() => {
+              handleNavigate(`/vehicleType/category/moto-bike`);
+            }}
+          >
             {vehicleData
               .filter((popular) => popular.type === "moto bike")
               .filter((_, index) => index < 4)
@@ -82,7 +92,12 @@ const VehicleType = () => {
               })}
           </VehicleList>
 
-          <VehicleList title="Bike">
+          <VehicleList
+            title="Bike"
+            viewAll={() => {
+              handleNavigate(`/vehicleType/category/bike`);
+            }}
+          >
             {vehicleData
               .filter((popular) => popular.type === "bike")
               .filter((_, index) => index < 4)

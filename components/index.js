@@ -10,8 +10,8 @@ import Loading from "./atoms/loading";
 import Cards from "./molecules/cards";
 import CardReview from "./molecules/cardReview";
 import Search from "./molecules/search";
-import TodayHistory from "./molecules/todayHistory";
-import WeekHistory from "./molecules/weekHistory";
+import RowHistory from "./molecules/rowHistory";
+import DetailHistory from "./molecules/detailHistory";
 
 // Organisms
 import Navbar from "./organisms/navbar";
@@ -35,8 +35,8 @@ export {
   Cards,
   CardReview,
   Search,
-  TodayHistory,
-  WeekHistory,
+  RowHistory,
+  DetailHistory,
   Navbar,
   Footer,
   Cover,

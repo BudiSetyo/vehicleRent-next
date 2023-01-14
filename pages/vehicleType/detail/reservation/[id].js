@@ -9,6 +9,7 @@ import { Box, Icon, IconButton } from "@chakra-ui/react";
 import { FaAngleLeft, FaPlus, FaMinus } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import axios from "axios";
 const api = process.env.API_URL;
@@ -16,6 +17,9 @@ const api = process.env.API_URL;
 const Reservation = () => {
   const router = useRouter();
   const { id } = router.query;
+  const userData = useSelector((state) => state.user);
+
+  // console.log(userData);
 
   const [vehicleData, setVehicleData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -62,9 +66,9 @@ const Reservation = () => {
 
     axios({
       method: "post",
-      url: `${api}/reservations?userId=a519b746-58ef-481b-8b8e-73420249b8c7&vehicleId=${vehicleData.id}`,
+      url: `${api}/reservations?vehicleId=${vehicleData.id}`,
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE1MTliNzQ2LTU4ZWYtNDgxYi04YjhlLTczNDIwMjQ5YjhjNyIsImVtYWlsIjoiaGVoZWhlQGdtYWlsLmNvbSIsIm5hbWUiOiJoZWhlYm95IiwiaWF0IjoxNjczMzA4OTQ3LCJleHAiOjE2NzMzOTUzNDd9.yFYblkyuuRjd3pK3QJSg8v5xnYhvNwffMWO7adhHv14`,
+        Authorization: `Bearer ${userData.token}`,
       },
       data: {
         quantity: value.quantity,
@@ -76,11 +80,13 @@ const Reservation = () => {
         price: vehicleData.price * value.quantity * value.days,
       },
     })
-      .then(() => {
+      .then((result) => {
         setLoading(false);
-        handleNavigate("/vehicleType/detail/reservation/payment/1");
+        handleNavigate(
+          `/vehicleType/detail/reservation/payment/${result.data.data.id}`
+        );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response));
   };
 
   useEffect(() => {
