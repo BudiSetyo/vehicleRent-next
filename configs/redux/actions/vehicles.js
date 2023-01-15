@@ -5,7 +5,7 @@ const api = process.env.API_URL;
 export const setVehicles = () => (dispatch) => {
   axios({
     method: "get",
-    url: `${api}/vehicles`,
+    url: `${api}/vehicles/?row=100`,
   })
     .then((response) => {
       return dispatch({

@@ -6,8 +6,9 @@ const Cards = ({ data, name, location, image, onClick }) => {
       <Box
         className="relative w-64 h-80 rounded-md bg-cover bg-center cursor-pointer"
         style={{
-          backgroundImage:
-            data?.image || image || "url('/background/second.png')",
+          backgroundImage: image
+            ? `url(${image})`
+            : "url('/background/second.png')",
         }}
         onClick={onClick}
       >

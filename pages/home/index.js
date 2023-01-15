@@ -34,6 +34,7 @@ export default function Home() {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                   />
                 );
               })}

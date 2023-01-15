@@ -55,6 +55,7 @@ const VehicleType = () => {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                     onClick={() => {
                       handleNavigate(`/vehicleType/detail/${vehicle.id}`);
                     }}

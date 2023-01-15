@@ -1,5 +1,5 @@
 import { MainLayout, Search, VehicleList, Cards } from "@/components";
-import { useState } from "react";
+// import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
@@ -9,9 +9,7 @@ const VehicleType = () => {
   const vehicleData = useSelector((state) => state.vehicles);
   // console.log(vehicleData);
 
-  const handleNavigate = (href) => {
-    return router.push(href);
-  };
+  const handleNavigate = (href) => router.push(href);
 
   return (
     <MainLayout>
@@ -38,6 +36,7 @@ const VehicleType = () => {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                     onClick={() => {
                       handleNavigate(`/vehicleType/detail/${vehicle.id}`);
                     }}
@@ -61,6 +60,7 @@ const VehicleType = () => {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                     onClick={() => {
                       handleNavigate(`/vehicleType/detail/${vehicle.id}`);
                     }}
@@ -84,6 +84,7 @@ const VehicleType = () => {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                     onClick={() => {
                       handleNavigate(`/vehicleType/detail/${vehicle.id}`);
                     }}
@@ -107,6 +108,7 @@ const VehicleType = () => {
                     key={index}
                     name={vehicle.name}
                     location={vehicle.location}
+                    image={vehicle.picture}
                     onClick={() => {
                       handleNavigate(`/vehicleType/detail/${vehicle.id}`);
                     }}

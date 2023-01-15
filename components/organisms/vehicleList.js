@@ -41,7 +41,7 @@ const VehicleList = ({ title, children, viewAll, hidden }) => {
             />
           </div>
 
-          <Wrap className="mt-10" justify="space-between" spacing="30px">
+          <Wrap className="mt-10" spacing="30px">
             {children}
           </Wrap>
         </section>
