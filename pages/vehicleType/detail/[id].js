@@ -13,6 +13,8 @@ const Detail = ({ data }) => {
   const [vehicleData, setVehicleData] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // console.log(vehicleData);
+
   const handleBack = () => {
     return router.back();
   };
@@ -58,7 +60,10 @@ const Detail = ({ data }) => {
 
           <section className="mt-16">
             <div className="flex md:flex-row flex-col">
-              <div className="md:mr-16 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center" />
+              <div
+                className={`md:mr-16 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center`}
+                style={{ backgroundImage: `url(${vehicleData.picture})` }}
+              />
               <div className="md:mt-0 mt-4 w-full flex flex-col justify-between">
                 <div>
                   <h1 className="text-4xl font-bold text-onyx-black">
@@ -74,20 +79,20 @@ const Detail = ({ data }) => {
                     {vehicleData?.status || "Status"}
                   </p>
                   <p className="text-xl text-sangria-red font-bold">
-                    {data?.prePayment || "No prepayment"}
+                    {vehicleData?.prePayment || "No prepayment"}
                   </p>
                 </div>
 
                 <div>
                   <p className="mb-4 text-xl text-onyx-black">
-                    Capacity: {data?.capacity || "1"} person
+                    Capacity: {vehicleData?.capacity || "1"} person
                   </p>
                   <p className="mb-4 text-xl text-onyx-black">
                     Type: {vehicleData?.type || "Type of vehicle"}
                   </p>
-                  <p className="text-xl text-onyx-black">
+                  {/* <p className="text-xl text-onyx-black">
                     {data?.reservation || "Reservation"}
-                  </p>
+                  </p> */}
                 </div>
 
                 <p className="text-3xl font-bold">

@@ -20,3 +20,10 @@ export const setHistory = (token) => (dispatch) => {
       console.log(err);
     });
 };
+
+export const updateHistory = (data) => (dispatch) => {
+  return dispatch({
+    type: actionTypes.UPDATE_HISTORY,
+    payload: data,
+  });
+};

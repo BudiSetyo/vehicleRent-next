@@ -8,4 +8,5 @@ export const actionTypes = {
 
   // History
   SET_HISTORY: "SET_HISTORY",
+  UPDATE_HISTORY: "UPDATE_HISTORY",
 };

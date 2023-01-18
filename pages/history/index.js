@@ -8,12 +8,69 @@ import {
 } from "@/components";
 import { Wrap, Box, Icon } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { updateHistory } from "@/configs";
+import { useEffect } from "react";
+import axios from "axios";
+const api = process.env.API_URL;
 
 const History = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const historyData = useSelector((state) => state.history);
+  const userData = useSelector((state) => state.user);
+
   // console.log(historyData);
+
   const data = ["bon"];
+
+  const fetchData = () => {
+    if (!userData.token) {
+      return dispatch(updateHistory([]));
+    }
+
+    axios({
+      method: "get",
+      url: `${api}/reservations`,
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+      },
+    })
+      .then((result) => {
+        if (historyData !== result.data.data) {
+          return dispatch(updateHistory(result.data.data));
+        }
+
+        return;
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDelete = (reservationId) => {
+    axios({
+      method: "delete",
+      url: `${api}/reservations/?reservationId=${reservationId}`,
+      headers: {
+        Authorization: `Bearer ${userData.token}`,
+      },
+    })
+      .then(() => {
+        const newHistory = historyData.filter(
+          (history) => history.id !== reservationId
+        );
+
+        return dispatch(updateHistory(newHistory));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleNavigate = (href) => router.push(href);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <MainLayout>
@@ -43,13 +100,15 @@ const History = () => {
               <div>
                 <h1 className="text-2xl text-sand-silver">History</h1>
                 <div className="mt-12">
-                  {historyData.map((history, index) => {
+                  {historyData?.map((history, index) => {
                     return (
                       <RowHistory
                         title={
-                          history.payment.statusPayment
-                            ? `Your ${history.vehicleReservation.name} payment has been confirmed!`
-                            : `Please finish your payment for ${history.vehicleReservation.name}`
+                          history.payment.status === "order"
+                            ? `Please finish your payment for ${history.vehicleReservation.name}`
+                            : history.payment.status === "waiting"
+                            ? `Please wait for the admin to confirm the order ${history.vehicleReservation.name}`
+                            : `Your ${history.vehicleReservation.name} payment has been confirmed!`
                         }
                         key={index}
                       >
@@ -57,12 +116,19 @@ const History = () => {
                           name={history.vehicleReservation.name}
                           date={history.startDate}
                           prePayment={"No Prepayment"}
-                          status={history.payment.statusPayment}
+                          status={history.payment.isCompleted}
+                          image={history.vehicleReservation.picture}
                           statusName={
-                            history.payment.statusPayment
+                            history.payment.isCompleted
                               ? "Confirmed"
                               : "Finish Your Payment"
                           }
+                          handleDetail={() =>
+                            handleNavigate(
+                              `/vehicleType/detail/reservation/payment/${history.id}`
+                            )
+                          }
+                          handleDelete={() => handleDelete(history.id)}
                         />
                       </RowHistory>
                     );

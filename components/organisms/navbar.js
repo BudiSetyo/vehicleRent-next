@@ -11,14 +11,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "@/configs";
-// import axios from "axios";
-// const api = process.env.API_URL;
+import axios from "axios";
+const api = process.env.API_URL;
 
 const Navbar = ({ active }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  // console.log(user);
 
   const [nav, setNav] = useState(false);
   const [profileNav, setProfileNav] = useState(false);
@@ -47,28 +46,24 @@ const Navbar = ({ active }) => {
     return handleNavigate("/");
   };
 
-  // const getUserProfile = () => {
-  //   if (user.isLogin) {
-  //     axios({
-  //       method: "get",
-  //       url: `${api}/users/`,
-  //       headers: {
-  //         Authorization: `Bearer ${user.token}`,
-  //       },
-  //     })
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  //   return;
-  // };
+  const checkToken = () => {
+    if (user.isLogin) {
+      axios({
+        method: "get",
+        url: `${api}/auth`,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }).catch((_) => {
+        dispatch(userLogout());
+        return handleNavigate("/");
+      });
+    }
+  };
 
-  // useEffect(() => {
-  //   getUserProfile();
-  // }, []);
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <section>

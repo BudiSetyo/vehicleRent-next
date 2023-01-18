@@ -1,6 +1,6 @@
 import { Buttons, MainLayout, Loading, Selects } from "@/components";
 import { IconButton, Icon, Box } from "@chakra-ui/react";
-import { FaAngleLeft, FaAngleDown } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const Payment = () => {
   const vehicleData = reservation.vehicle || {};
   const reservationData = reservation.reservation || {};
 
-  // console.log(reservationData);
+  // console.log(reservation);
 
   const data = ["cash", "transfer"];
 
@@ -49,7 +49,8 @@ const Payment = () => {
         Authorization: `Bearer ${userData.token}`,
       },
       data: {
-        statusPayment: true,
+        status: "waiting",
+        isCompleted: false,
       },
     })
       .then((_) => {
@@ -85,7 +86,10 @@ const Payment = () => {
           </div>
 
           <section className="mt-10 flex md:flex-row flex-col justify-between">
-            <div className="bg-fourth bg-cover bg-center rounded-lg h-80 w-full" />
+            <div
+              className="bg-fourth bg-cover bg-center rounded-lg h-80 w-full"
+              style={{ backgroundImage: `url(${vehicleData.picture})` }}
+            />
             <div className="w-20" />
             <div className="w-full md:mt-0 mt-4">
               <div>
@@ -132,7 +136,7 @@ const Payment = () => {
                   {reservationData.quantity} vehicle : Rp. {vehicleData.price}
                 </p>
                 <p className="mt-4 lg:text-xl text-md font-medium">
-                  Total : Rp. {reservationData.price}
+                  Total : Rp. {reservationData.totalPrice}
                 </p>
               </div>
             </div>

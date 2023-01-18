@@ -42,21 +42,37 @@ const DetailHistory = ({
             </p>
           </div>
 
-          {status ? (
+          <div>
+            <Buttons
+              className="mt-4 px-10 py-2 mr-4"
+              text="Detail"
+              textEdit="font-bold"
+              onClick={handleDetail}
+            />
+
             <Buttons
               className="mt-4 px-10 py-2"
               text="Delete"
               textEdit="font-bold"
-              onClick={() => handleDelete}
+              onClick={handleDelete}
+            />
+          </div>
+
+          {/* {status ? (
+            <Buttons
+              className="mt-4 px-10 py-2"
+              text="Delete"
+              textEdit="font-bold"
+              onClick={handleDelete}
             />
           ) : (
             <Buttons
               className="mt-4 px-10 py-2"
               text="Detail"
               textEdit="font-bold"
-              onClick={() => handleDetail}
+              onClick={handleDetail}
             />
-          )}
+          )} */}
         </div>
       </div>
     </>

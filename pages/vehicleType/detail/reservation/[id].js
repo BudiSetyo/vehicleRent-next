@@ -75,9 +75,11 @@ const Reservation = () => {
         startDate: moment(value.startDate).format("YYYY-MM-DD, h:mm:ss"),
         endDate: moment().add(value.days, "days").format("YYYY-MM-DD, h:mm:ss"),
         paymentType: "transfer",
-        statusPayment: false,
+        status: "order",
+        isCompleted: false,
         paymentCode: "asdasd",
-        price: vehicleData.price * value.quantity * value.days,
+        totalPrice: vehicleData.price * value.quantity * value.days,
+        days: value.days,
       },
     })
       .then((result) => {
@@ -112,7 +114,10 @@ const Reservation = () => {
 
           <section className="mt-16">
             <div className="flex md:flex-row flex-col">
-              <div className="md:mr-16 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center" />
+              <div
+                className="md:mr-16 w-full lg:h-96 h-72 rounded-lg bg-third bg-cover bg-center"
+                style={{ backgroundImage: `url(${vehicleData.picture})` }}
+              />
               <div className="md:mt-0 mt-4 w-full flex flex-col justify-between">
                 <div>
                   <h1 className="text-4xl font-bold text-onyx-black">

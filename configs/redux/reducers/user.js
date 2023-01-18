@@ -1,4 +1,8 @@
-const initialValue = {};
+const initialValue = {
+  data: {},
+  isLogin: false,
+  token: "",
+};
 const userReducer = (state = initialValue, action) => {
   switch (action.type) {
     case "USER_LOGIN":
