@@ -14,7 +14,7 @@ const RowHistory = ({ children, title }) => {
         }`}
         onClick={() => setShowDetail(!showDetail)}
       >
-        <h1 className="text-2xl">{title || "Your title"}</h1>
+        <h1 className="text-2xl text-start">{title || "Your title"}</h1>
         <Icon
           color="#999"
           h={6}

@@ -1,4 +1,10 @@
-import { HomeLayout, ButtonArrow, Cards, CardReview } from "@/components";
+import {
+  HomeLayout,
+  ButtonArrow,
+  Cards,
+  CardReview,
+  AutoComplete,
+} from "@/components";
 import { Wrap } from "@chakra-ui/react";
 // import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,7 +30,7 @@ export default function Home() {
             />
           </div>
 
-          <Wrap className="mt-10" justify="space-between" spacing="30px">
+          <Wrap className="mt-10" spacing="30px">
             {vehicleData
               .filter((popular) => popular.isPopular)
               .filter((_, index) => index < 4)
@@ -35,13 +41,16 @@ export default function Home() {
                     name={vehicle.name}
                     location={vehicle.location}
                     image={vehicle.picture}
+                    onClick={() =>
+                      handleNavigate(`/vehicleType/detail/${vehicle.id}`)
+                    }
                   />
                 );
               })}
           </Wrap>
         </section>
 
-        <section className="mt-16 mb-10">
+        {/* <section className="mt-16 mb-10">
           <h1 className="text-3xl font-bold">Testimonial</h1>
 
           <div className="flex md:flex-row items-center flex-col-reverse mt-16">
@@ -61,7 +70,13 @@ export default function Home() {
               <CardReview />
             </div>
           </div>
-        </section>
+        </section> */}
+
+        {/* <section>
+          <AutoComplete
+            suggestions={["Oranges", "Apples", "Banana", "Kiwi", "Mango"]}
+          />
+        </section> */}
       </section>
     </HomeLayout>
   );

@@ -33,7 +33,7 @@ const ForgotPassword = () => {
                 <Inputs
                   size="lg"
                   placeHolder="Enter your email adress"
-                  placeHolderColor="#FFF"
+                  placeholdercolor="#FFF"
                   textColor="#FFF"
                   className="mb-8"
                 />

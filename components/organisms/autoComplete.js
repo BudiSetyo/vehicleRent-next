@@ -1,77 +1,112 @@
-import { Search } from "@/components";
-import { Box } from "@chakra-ui/react";
+import { InputGroup, Input, InputRightElement, Icon } from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import axios from "node_modules/axios/index";
+const api = process.env.API_URL;
 
-const AutoComplete = ({ backgroundInput, data, placeHolder, size }) => {
-  const router = useRouter();
+const AutoComplete = ({ suggestions }) => {
+  const [option, setOption] = useState({
+    activeSuggestion: 0,
+    filteredSuggestions: [],
+    showSuggestions: true,
+    userInput: "",
+  });
 
-  const [inputValue, setInputValue] = useState("");
-  const [searchVisible, setSearchVisible] = useState(false);
+  const { activeSuggestion, filteredSuggestions, showSuggestions, userInput } =
+    option;
 
-  const handleNavigate = (href) => router.push(href);
-
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-    setSearchVisible(true);
-  };
-
-  const handleVisibleSearch = (value) => setSearchVisible(value);
-
-  const filterData = (data, searchString) => {
-    const newData = data.filter(
-      (item) =>
-        (item.vehicle || "")
-          .toLowerCase()
-          .indexOf((searchString || "").toLowerCase()) !== -1
+  const onChange = (e) => {
+    const filteredSuggestions = suggestions.filter(
+      (suggestion) =>
+        suggestion.toLowerCase().indexOf(userInput?.toLowerCase()) > -1
     );
 
-    return newData;
+    setOption({
+      activeSuggestion: 0,
+      filteredSuggestions,
+      showSuggestions: true,
+      userInput: e.currentTarget.value,
+    });
   };
 
-  return (
-    <section>
-      <Search
-        className={`bg-${backgroundInput || "sand-silver"} mb-4 border-2`}
-        placeHolder={placeHolder || "Your placeholder"}
-        placeHolderColor="#4A4C53"
-        size={size || "lg"}
-        onChange={handleChange}
-        onBlur={() => handleVisibleSearch(false)}
-      />
+  const onClick = (e) =>
+    setOption({
+      activeSuggestion: 0,
+      filteredSuggestions: [],
+      showSuggestions: false,
+      userInput: e.currentTarget.innerText,
+    });
 
-      <div className={`relative ${searchVisible ? "" : "hidden"}`}>
-        <div className="h-52 w-full shadow-lg absolute bg-boro-silver p-4 rounded overflow-y-scroll scroll-smooth">
-          {inputValue === "" ? (
-            <>
-              <div>
-                <h1>No result found</h1>
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                {filterData(data, inputValue).map((item, index) => {
-                  return (
-                    <div className="bg-white px-2 py-1 mb-1" key={index}>
-                      <Box
-                        clas
-                        as="button"
-                        onClick={() =>
-                          handleNavigate(`/vehicleType/detail/${item.vehicle}`)
-                        }
-                      >
-                        <p>{item.vehicle}</p>
-                      </Box>
-                    </div>
-                  );
-                })}
-              </div>
-            </>
-          )}
+  const onKeyDown = (e) => {
+    const { activeSuggestion, filteredSuggestions } = option;
+
+    if (e.keyCode === 13) {
+      setOption({
+        activeSuggestion: 0,
+        showSuggestions: false,
+        userInput: filteredSuggestions[activeSuggestion],
+      });
+    } else if (e.keyCode === 38) {
+      if (activeSuggestion === 0) {
+        return;
+      }
+      setOption({ activeSuggestion: activeSuggestion - 1 });
+    }
+    // User pressed the down arrow, increment the index
+    else if (e.keyCode === 40) {
+      if (activeSuggestion - 1 === filteredSuggestions.length) {
+        return;
+      }
+      setOption({ activeSuggestion: activeSuggestion + 1 });
+    }
+  };
+
+  let suggestionsListComponent;
+
+  if (showSuggestions && userInput) {
+    if (filteredSuggestions.length) {
+      suggestionsListComponent = (
+        <ul className="suggestions w-full shadow mt-1 p-2 rounded">
+          {filteredSuggestions.map((suggestion, index) => {
+            let className;
+
+            // Flag the active suggestion with a class
+            if (index === activeSuggestion) {
+              className = "suggestion-active";
+            }
+            return (
+              <li className={className} key={suggestion} onClick={onClick}>
+                {suggestion}
+              </li>
+            );
+          })}
+        </ul>
+      );
+    } else {
+      suggestionsListComponent = (
+        <div className="no-suggestions w-full shadow mt-1 p-2 rounded">
+          <em>No suggestions available.</em>
         </div>
-      </div>
-    </section>
+      );
+    }
+  }
+
+  return (
+    <>
+      <InputGroup>
+        <Input
+          type="text"
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          value={option.userInput}
+          className="bg-white border-2 border-gray w-full"
+        />
+        <InputRightElement className="mx-2">
+          <Icon as={FaSearch} w={5} h={5} />
+        </InputRightElement>
+      </InputGroup>
+      {suggestionsListComponent}
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ const Buttons = ({
   textColor,
   onClick,
   textEdit,
+  type,
 }) => {
   return (
     <Box
@@ -19,6 +20,7 @@ const Buttons = ({
       as="button"
       bg={variant === "outline" ? "" : color || "#FFCD61"}
       onClick={onClick}
+      type={type}
     >
       <p className={`text-${textColor} ${textEdit}`}>{text}</p>
     </Box>

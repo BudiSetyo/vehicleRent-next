@@ -1,5 +1,5 @@
-import { AuthLayout, Buttons, Inputs, Loading, loading } from "@/components";
-import { Button } from "@chakra-ui/react";
+import { AuthLayout, Buttons, Inputs, Loading } from "@/components";
+import { Button, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ const api = process.env.API_URL;
 const SignIn = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const [login, setLogin] = useState({
     email: "",
@@ -31,11 +32,19 @@ const SignIn = () => {
     setLogin({ ...login, password: e.target.value });
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     setLoading(true);
+
     if (login.email === "" || login.password === "") {
       setLoading(false);
-      return console.log("Fields can't be empty");
+      return toast({
+        title: "Login Failed",
+        description: "Fields can't be empty!",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
     }
 
     axios({
@@ -50,10 +59,23 @@ const SignIn = () => {
         dispatch(userLogin(response.data));
         dispatch(setHistory(response.data.token));
         setLoading(false);
+        toast({
+          title: "Login Success",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
         return handleNavigate("/");
       })
       .catch((err) => {
-        console.log(err);
+        setLoading(false);
+        toast({
+          title: "Login Failed",
+          description: err.response.data.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       });
   };
 
@@ -93,47 +115,51 @@ const SignIn = () => {
             </div>
 
             <div className="w-full md:my-auto pt-8">
-              <div>
-                <Inputs
-                  className="md:max-w-sm mt-6"
-                  placeHolder="Email"
-                  placeHolderColor="#FFF"
-                  textColor="#FFF"
-                  size="lg"
-                  fontWeight="md"
-                  onChange={handleEmail}
-                />
+              <form onSubmit={handleLogin}>
+                <div>
+                  <Inputs
+                    className="md:max-w-sm mt-6"
+                    placeHolder="Email"
+                    placeholdercolor="#FFF"
+                    textColor="#FFF"
+                    size="lg"
+                    fontWeight="md"
+                    value={login.email}
+                    onChange={handleEmail}
+                  />
 
-                <Inputs
-                  className="md:max-w-sm mt-6"
-                  placeHolder="Password"
-                  placeHolderColor="#FFF"
-                  textColor="#FFF"
-                  size="lg"
-                  fontWeight="md"
-                  type="password"
-                  onChange={handlePassword}
-                />
+                  <Inputs
+                    className="md:max-w-sm mt-6"
+                    placeHolder="Password"
+                    placeholdercolor="#FFF"
+                    textColor="#FFF"
+                    size="lg"
+                    fontWeight="md"
+                    type="password"
+                    value={login.password}
+                    onChange={handlePassword}
+                  />
 
-                <Button
-                  variant="unstyled"
-                  onClick={() => {
-                    return handleNavigate("/forgotPassword");
-                  }}
-                >
-                  <p className="text-white underline">Forgot password?</p>
-                </Button>
-              </div>
+                  <Button
+                    variant="unstyled"
+                    onClick={() => {
+                      return handleNavigate("/forgotPassword");
+                    }}
+                  >
+                    <p className="text-white underline">Forgot password?</p>
+                  </Button>
+                </div>
 
-              <div>
-                <Buttons
-                  className="mt-8 py-4 md:max-w-sm w-full"
-                  text="Sign In"
-                  textColor="onyx-black"
-                  textEdit="text-xl font-bold"
-                  onClick={handleLogin}
-                />
-              </div>
+                <div>
+                  <Buttons
+                    className="mt-8 py-4 md:max-w-sm w-full"
+                    text="Sign In"
+                    textColor="onyx-black"
+                    textEdit="text-xl font-bold"
+                    type={"submit"}
+                  />
+                </div>
+              </form>
 
               <div className="md:hidden">
                 <p className="mt-12 text-lg text-white font-bold">

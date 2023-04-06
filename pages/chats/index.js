@@ -16,7 +16,7 @@ const Chat = () => {
             <Search
               className="w-full mr-10 bg-boro-silver border-none"
               placeHolder="Search chat"
-              placeHolderColor="#767680"
+              placeholdercolor="#767680"
               backgroundIcon="#DADADA"
             />
             <div className="w-32">
@@ -24,7 +24,7 @@ const Chat = () => {
                 className="w-full px-5"
                 background="#DADADA"
                 placeHolder="Sort by"
-                placeHolderColor="#767680"
+                placeholdercolor="#767680"
                 borderColor="#DADADA"
                 data={data}
               />

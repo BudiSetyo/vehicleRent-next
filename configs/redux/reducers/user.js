@@ -21,6 +21,12 @@ const userReducer = (state = initialValue, action) => {
         token: "",
       };
 
+    case "USER_UPDATE_AVATAR":
+      return {
+        ...state,
+        data: { ...state.data, avatar: action.payload },
+      };
+
     default:
       return state;
   }

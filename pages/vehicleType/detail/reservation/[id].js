@@ -151,12 +151,13 @@ const Reservation = () => {
 
                 <div className="mt-4">
                   <h1 className="text-xl font-bold">Reservation Date :</h1>
-                  <div className="bg-boro-silver mt-4 px-3 py-2 rounded">
+                  <div className="bg-boro-silver mt-4 rounded">
                     <DatePicker
                       date={value.startDate}
                       onChange={(date) =>
                         setValue({ ...value, startDate: date })
                       }
+                      className="px-3 py-2 rounded"
                     />
                   </div>
                   <div className="mt-4">

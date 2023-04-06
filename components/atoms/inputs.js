@@ -3,7 +3,7 @@ import { Input } from "@chakra-ui/react";
 const Inputs = ({
   className,
   placeHolder,
-  placeHolderColor,
+  placeholdercolor,
   textColor,
   size,
   fontWeight,
@@ -13,6 +13,8 @@ const Inputs = ({
   onChange,
   onFocus,
   onBlur,
+  value,
+  name,
 }) => {
   return (
     <>
@@ -20,7 +22,7 @@ const Inputs = ({
         bg={background || "rgba(255, 255, 255, 0.5)"}
         placeholder={placeHolder}
         _placeholder={{
-          color: placeHolderColor || "#4A4C53",
+          color: placeholdercolor || "#4A4C53",
           fontWeight: "medium",
         }}
         borderColor={borderColor || "#4A4C53"}
@@ -32,6 +34,8 @@ const Inputs = ({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        value={value}
+        name={name}
       />
     </>
   );

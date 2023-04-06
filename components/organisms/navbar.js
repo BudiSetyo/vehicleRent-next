@@ -19,32 +19,24 @@ const Navbar = ({ active }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const [nav, setNav] = useState(false);
-  const [profileNav, setProfileNav] = useState(false);
-  const [messageNav, setMessageNav] = useState(false);
+  const [showMenu, setShowMenu] = useState({
+    message: false,
+    profile: false,
+    navbar: false,
+  });
 
   const navbarList = ["Home", "Vehicle Type", "History", "About"];
 
-  const closeNavbar = () => {
-    setNav(false);
-  };
-
   const handleNavigate = (href) => {
     return router.push(href);
-  };
-
-  const handleProvileNav = () => {
-    setProfileNav(!profileNav);
-  };
-
-  const handleMessageNav = () => {
-    setMessageNav(!messageNav);
   };
 
   const handleLogout = () => {
     dispatch(userLogout());
     return handleNavigate("/");
   };
+
+  const handleShowMenu = (data) => setShowMenu({ ...showMenu, ...data });
 
   const checkToken = () => {
     if (user.isLogin) {
@@ -91,9 +83,7 @@ const Navbar = ({ active }) => {
                 <IconButton
                   variant="unstyled"
                   icon={<Icon color="#FFCD61" as={FaBars} w={8} h={8} />}
-                  onClick={() => {
-                    setNav(!nav);
-                  }}
+                  onClick={() => setShowMenu({ navbar: !showMenu.navbar })}
                 />
               </div>
             </div>
@@ -153,13 +143,18 @@ const Navbar = ({ active }) => {
                               h={10}
                             />
                           }
-                          onClick={handleMessageNav}
+                          onClick={() =>
+                            handleShowMenu({
+                              message: !showMenu.message,
+                              profile: false,
+                            })
+                          }
                         />
                       </div>
 
                       <div
                         className={`relative ${
-                          messageNav ? "block" : "hidden"
+                          showMenu.message ? "block" : "hidden"
                         }`}
                       >
                         <div className="absolute rounded-lg z-20 shadow-2xl w-72 px-6 py-8 mt-5 right-2 bg-white">
@@ -197,13 +192,19 @@ const Navbar = ({ active }) => {
                       <Avatar
                         className="cursor-pointer"
                         name={user.data.name}
+                        src={user.data.avatar}
                         size="md"
-                        onClick={handleProvileNav}
+                        onClick={() =>
+                          handleShowMenu({
+                            profile: !showMenu.profile,
+                            message: false,
+                          })
+                        }
                       />
 
                       <div
                         className={`relative ${
-                          profileNav ? "block" : "hidden"
+                          showMenu.profile ? "block" : "hidden"
                         }`}
                       >
                         <div className="w-48 flex flex-col absolute rounded-lg z-20 shadow-2xl mt-5 right-2 bg-white">
@@ -268,7 +269,7 @@ const Navbar = ({ active }) => {
         </section>
         <section
           className={`${
-            !nav ? "hidden" : ""
+            !showMenu.navbar ? "hidden" : ""
           } bg-ghost-white mt-4 px-4 py-4 shadow-md`}
         >
           <div className="flex flex-col">
@@ -285,7 +286,7 @@ const Navbar = ({ active }) => {
                         ? "/vehicleType"
                         : `/${item.toLowerCase()}`
                     );
-                    closeNavbar();
+                    handleShowMenu({ navbar: !showMenu.navbar });
                   }}
                 />
               );

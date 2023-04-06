@@ -80,7 +80,7 @@ const History = () => {
             <Search
               className="w-full mr-10 bg-boro-silver border-none"
               placeHolder="Search history"
-              placeHolderColor="#767680"
+              placeholdercolor="#767680"
               backgroundIcon="#DADADA"
             />
             <div className="w-32">
@@ -88,7 +88,7 @@ const History = () => {
                 className="w-full px-5"
                 background="#DADADA"
                 placeHolder="Filter"
-                placeHolderColor="#767680"
+                placeholdercolor="#767680"
                 borderColor="#DADADA"
                 data={data}
               />

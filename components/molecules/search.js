@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 const Search = ({
   className,
   placeHolder,
-  placeHolderColor,
+  placeholdercolor,
   size,
   onChange,
   backgroundIcon,
@@ -21,7 +21,7 @@ const Search = ({
             size={size || "lg"}
             placeholder={placeHolder || "Your place holder"}
             _placeholder={{
-              color: placeHolderColor || "#4A4C53",
+              color: placeholdercolor || "#4A4C53",
               fontWeight: "medium",
             }}
             onChange={onChange}
