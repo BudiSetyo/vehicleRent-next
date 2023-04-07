@@ -1,6 +1,6 @@
 import { Buttons, MainLayout, Loading, Selects } from "@/components";
 import { IconButton, Icon, Box } from "@chakra-ui/react";
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaAngleDown } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -180,22 +180,25 @@ const Payment = () => {
 
             <div className="w-10 md:block hidden" /> */}
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <Box
                 as="button"
                 className="md:w-fit w-full flex items-center border-2 rounded-lg px-4 lg:py-3 md:py-0.5 py-3"
               >
-                {/* <div className="mx-auto flex">
+                <div className="mx-auto flex">
                   <p className="text-lg mr-4">Select payment methods</p>
                   <Icon w={8} h={8} as={FaAngleDown} />
-                </div> */}
-                <Selects
-                  placeHolder="Select payment methods"
-                  data={data}
-                  size="lg"
-                  borderColor="rgba(0, 0, 0, 0)"
-                />
+                </div>
               </Box>
+            </div> */}
+            <div>
+              <Selects
+                placeHolder="Payment methods"
+                data={data}
+                size="lg"
+                borderColor={"#9F9F9F"}
+                className="border-2"
+              />
             </div>
           </div>
 

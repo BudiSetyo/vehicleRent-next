@@ -26,7 +26,7 @@ const Selects = ({
       >
         {data.map((item, index) => {
           return (
-            <option key={index} value={item}>
+            <option key={index} value={item} className="w-fit">
               {item}
             </option>
           );

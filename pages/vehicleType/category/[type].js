@@ -1,4 +1,4 @@
-import { MainLayout, Search, VehicleList, Cards } from "@/components";
+import { MainLayout, VehicleList, Cards, AutoComplete } from "@/components";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -16,11 +16,7 @@ const VehicleType = () => {
   return (
     <MainLayout>
       <section className="md:py-8 md:px-20 py-4 px-10">
-        <Search
-          placeHolder="Search vehicle (ex. cars, cars name)"
-          placeholdercolor="#B8BECD"
-          backgroundIcon="#FFF"
-        />
+        <AutoComplete />
 
         <section>
           <VehicleList

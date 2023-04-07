@@ -18,6 +18,7 @@ const Navbar = ({ active }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  //   console.log(user);
 
   const [showMenu, setShowMenu] = useState({
     message: false,
@@ -92,9 +93,13 @@ const Navbar = ({ active }) => {
               <Wrap className="mr-10" spacing="20px">
                 {navbarList.map((item, index) => {
                   return (
-                    <Button
+                    <Box
+                      className={`${
+                        item === "History" && !user.isLogin ? "hidden" : ""
+                      }`}
                       key={index}
                       variant="unstyled"
+                      as="button"
                       onClick={() => {
                         handleNavigate(
                           item === "Home"
@@ -106,15 +111,15 @@ const Navbar = ({ active }) => {
                       }}
                     >
                       <p
-                        className={
+                        className={`${
                           active === item.toLocaleLowerCase()
                             ? "text-old-silver"
                             : "text-pastel-blue"
-                        }
+                        } font-bold`}
                       >
                         {item}
                       </p>
-                    </Button>
+                    </Box>
                   );
                 })}
               </Wrap>

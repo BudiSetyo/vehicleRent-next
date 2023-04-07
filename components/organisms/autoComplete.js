@@ -1,82 +1,50 @@
 import { InputGroup, Input, InputRightElement, Icon } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import axios from "node_modules/axios/index";
 const api = process.env.API_URL;
 
-const AutoComplete = ({ suggestions }) => {
+const AutoComplete = () => {
+  const router = useRouter();
+
+  const [suggestions, setSuggestions] = useState([]);
   const [option, setOption] = useState({
-    activeSuggestion: 0,
-    filteredSuggestions: [],
-    showSuggestions: true,
-    userInput: "",
+    showSuggestions: false,
   });
 
-  const { activeSuggestion, filteredSuggestions, showSuggestions, userInput } =
-    option;
+  const handleNavigate = (href) => router.push(href);
 
   const onChange = (e) => {
-    const filteredSuggestions = suggestions.filter(
-      (suggestion) =>
-        suggestion.toLowerCase().indexOf(userInput?.toLowerCase()) > -1
-    );
+    setOption({ ...option, showSuggestions: true });
 
-    setOption({
-      activeSuggestion: 0,
-      filteredSuggestions,
-      showSuggestions: true,
-      userInput: e.currentTarget.value,
-    });
+    fetchData(e.target.value);
   };
 
-  const onClick = (e) =>
-    setOption({
-      activeSuggestion: 0,
-      filteredSuggestions: [],
-      showSuggestions: false,
-      userInput: e.currentTarget.innerText,
-    });
-
   const onKeyDown = (e) => {
-    const { activeSuggestion, filteredSuggestions } = option;
-
-    if (e.keyCode === 13) {
-      setOption({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion],
-      });
-    } else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
-      }
-      setOption({ activeSuggestion: activeSuggestion - 1 });
-    }
-    // User pressed the down arrow, increment the index
-    else if (e.keyCode === 40) {
-      if (activeSuggestion - 1 === filteredSuggestions.length) {
-        return;
-      }
-      setOption({ activeSuggestion: activeSuggestion + 1 });
-    }
+    setOption({ ...option, showSuggestions: false });
+    setSuggestions([]);
   };
 
   let suggestionsListComponent;
 
-  if (showSuggestions && userInput) {
-    if (filteredSuggestions.length) {
+  if (option.showSuggestions) {
+    if (suggestions.length) {
       suggestionsListComponent = (
-        <ul className="suggestions w-full shadow mt-1 p-2 rounded">
-          {filteredSuggestions.map((suggestion, index) => {
-            let className;
-
-            // Flag the active suggestion with a class
-            if (index === activeSuggestion) {
-              className = "suggestion-active";
-            }
+        <ul
+          className="w-full shadow-md mt-1 p-2 rounded absolute bg-white"
+          style={{ zIndex: "9999" }}
+        >
+          {suggestions.map((suggestion) => {
             return (
-              <li className={className} key={suggestion} onClick={onClick}>
-                {suggestion}
+              <li
+                key={suggestion.id}
+                onClick={() =>
+                  handleNavigate(`vehicleType/detail/${suggestion.id}`)
+                }
+                className="py-1 font-semibold"
+              >
+                {suggestion.name}
               </li>
             );
           })}
@@ -84,12 +52,35 @@ const AutoComplete = ({ suggestions }) => {
       );
     } else {
       suggestionsListComponent = (
-        <div className="no-suggestions w-full shadow mt-1 p-2 rounded">
-          <em>No suggestions available.</em>
+        <div
+          className="w-full shadow-md mt-1 p-2 rounded absolute"
+          style={{ zIndex: "9999" }}
+        >
+          <em>Sorry vehicle not available.</em>
         </div>
       );
     }
   }
+
+  const fetchData = (input) => {
+    if (input !== "") {
+      axios({
+        method: "get",
+        url: `${api}/vehicles/?search=${input}&page=1&row=5`,
+      })
+        .then((result) => {
+          setSuggestions(result.data.data.results);
+        })
+        .catch((err) => console.log(err));
+    }
+
+    if (input === "") {
+      setSuggestions([]);
+      setOption({ ...option, showSuggestions: false });
+    }
+
+    return;
+  };
 
   return (
     <>
@@ -98,14 +89,14 @@ const AutoComplete = ({ suggestions }) => {
           type="text"
           onChange={onChange}
           onKeyDown={onKeyDown}
-          value={option.userInput}
           className="bg-white border-2 border-gray w-full"
+          placeholder="Search vehicle (ex. cars, cars name)"
         />
         <InputRightElement className="mx-2">
           <Icon as={FaSearch} w={5} h={5} />
         </InputRightElement>
       </InputGroup>
-      {suggestionsListComponent}
+      <div className="relative">{suggestionsListComponent}</div>
     </>
   );
 };
