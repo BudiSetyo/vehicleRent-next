@@ -1,13 +1,23 @@
-import { MainLayout, VehicleList, Cards, AutoComplete } from "@/components";
+import {
+  MainLayout,
+  VehicleList,
+  Cards,
+  AutoComplete,
+  Pagination,
+} from "@/components";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { axios } from "axios";
 
 const VehicleType = () => {
   const router = useRouter();
   const { type } = router.query;
 
   const vehicleData = useSelector((state) => state.vehicles);
+  const [data, setData] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleNavigate = (href) => {
     return router.push(href);
@@ -60,6 +70,16 @@ const VehicleType = () => {
               })}
           </VehicleList>
         </section>
+
+        <div className="mt-10 flex justify-center">
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={100}
+            pageSize={10}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
       </section>
     </MainLayout>
   );

@@ -21,6 +21,7 @@ import Cover from "./organisms/cover";
 import Modals from "./organisms/modal";
 import VehicleList from "./organisms/vehicleList";
 import AutoComplete from "./organisms/autoComplete";
+import Pagination from "./organisms/pagination";
 
 // Templates
 import MainLayout from "./templates/layouts/main";
@@ -49,4 +50,5 @@ export {
   HomeLayout,
   DatePicker,
   Loading,
+  Pagination,
 };
