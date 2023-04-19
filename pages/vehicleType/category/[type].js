@@ -9,18 +9,31 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { axios } from "axios";
+const api = process.env.API_URL;
 
 const VehicleType = () => {
   const router = useRouter();
   const { type } = router.query;
 
   const vehicleData = useSelector((state) => state.vehicles);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleNavigate = (href) => {
     return router.push(href);
+  };
+
+  const fetchData = () => {
+    setLoading(!loading);
+
+    axios({
+      method: "get",
+      url: ``,
+    })
+      .then()
+      .catch();
   };
 
   return (
